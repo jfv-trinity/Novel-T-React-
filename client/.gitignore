@@ -12,6 +12,7 @@
 tsconfig.json
   /public
   /src
+/.env.production
 
 # misc
 .DS_Store
