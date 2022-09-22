@@ -1,7 +1,16 @@
 import dotenv from "dotenv";
+import * as bodyParser from "body-parser";
   import express, { Express, Request, Response } from "express";
   import path from "path";
-  import cors from "cors";
+import cors from "cors";
+import { AppDataSource } from "./data-source";
+import { Routes } from "./routes";
+ 
+  function handleError(err:any, req:any, res:any, next:any) {
+    res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status })
+}
+
+AppDataSource.initialize().then(async () => {
 
   dotenv.config();
 
@@ -9,12 +18,7 @@ import dotenv from "dotenv";
 
   app.use(express.json());
   app.use(cors());
-
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  
-  app.get('/*', (req: Request, res: Response) => {
-   res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-  });
+  app.use(bodyParser.json())
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
@@ -22,46 +26,38 @@ import dotenv from "dotenv";
     app.get('/*', function (req: Request, res: Response) {
       res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
-}
+  }
+
+  Routes.forEach(route => {
+        (app as any)[route.method](route.route,
+            //route.validation,
+            async (req: Request, res: Response, next: Function) => {
+                try {
+                // const errors = validationResult(req)
+                // console.log(errors)
+                // if (!errors.isEmpty()) {
+                //     return res.status(400).json({ errors: errors.array() })
+                // }
+                const result = await (new (route.controller as any))[route.action](req, res, next)
+                res.json(result)
+            } catch (error) {
+                next(error)
+            }
+            
+        })
+    })
+
+  app.use(handleError);
   
   const port = process.env.PORT || 8000;
 
   app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Express server has started on port ${port}.`)
   });
-
-    interface FormInputs {
-    email: string,
-    password: string
-  }
-
-  // Array of example users for testing purposes
-  const users = [
-    {
-      id: 1,
-      name: 'Maria Doe',
-      email: 'maria@example.com',
-      password: 'maria123'
-    },
-    {
-      id: 2,
-      name: 'Juan Doe',
-      email: 'juan@example.com',
-      password: 'juan123'
-    }
-  ];
 
   // route login
-  app.post('/login', (req: Request, res: Response) => {
-    const { email, password }:FormInputs = req.body;
-
-    const user = users.find(user => {
-      return user.email === email && user.password === password
-    });
-
-    if (!user) {
-      return res.status(404).send('User Not Found!')
-    }
-
-    return res.status(200).json(user)
+  app.post('/testRoute', (req: Request, res: Response) => {
+   
   });
+
+}).catch((error: any) => console.log(error))

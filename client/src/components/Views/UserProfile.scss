@@ -1,0 +1,68 @@
+.header{
+    text-align: left;
+}
+
+.w3-modal-hidden {
+    display: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+    padding: 16px;
+}
+
+.center {
+    float: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.form-group {
+    max-width: 700px;
+}
+
+.card {
+    border-radius: 20px;
+    background: grey;
+    max-width: 600px;
+    position: relative;
+}
+
+.something {
+    background: black;
+    max-width: 600px;
+    padding: 50px;
+    border-radius: 40px;
+    margin:auto;
+    
+}
+
+.header {
+    color: white;
+}
+
+.form-group p {
+    padding: 0px;
+    padding-left: 10px;
+    line-height: 0.5;
+    color: white;
+}
+
+.form-group h5 {
+    padding-top: 20px;
+    padding-left: 10px;
+    line-height: 0.5;
+    color: white;
+}
+
+.outline {
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+}

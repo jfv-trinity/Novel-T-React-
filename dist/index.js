@@ -1,53 +1,86 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
+const bodyParser = __importStar(require("body-parser"));
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
-dotenv_1.default.config();
-const app = (0, express_1.default)();
-app.use(express_1.default.json());
-app.use((0, cors_1.default)());
-app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build')));
-app.get('/*', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '../client/build', 'index.html'));
-});
-if (process.env.NODE_ENV === 'production') {
-    app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build')));
-    app.get('/*', function (req, res) {
-        res.sendFile(path_1.default.join(__dirname, '../client/build', 'index.html'));
-    });
+const data_source_1 = require("./data-source");
+const routes_1 = require("./routes");
+function handleError(err, req, res, next) {
+    res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status });
 }
-const port = process.env.PORT || 8000;
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-// Array of example users for testing purposes
-const users = [
-    {
-        id: 1,
-        name: 'Maria Doe',
-        email: 'maria@example.com',
-        password: 'maria123'
-    },
-    {
-        id: 2,
-        name: 'Juan Doe',
-        email: 'juan@example.com',
-        password: 'juan123'
+data_source_1.AppDataSource.initialize().then(() => __awaiter(void 0, void 0, void 0, function* () {
+    dotenv_1.default.config();
+    const app = (0, express_1.default)();
+    app.use(express_1.default.json());
+    app.use((0, cors_1.default)());
+    app.use(bodyParser.json());
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build')));
+        app.get('/*', function (req, res) {
+            res.sendFile(path_1.default.join(__dirname, '../client/build', 'index.html'));
+        });
     }
-];
-// route login
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    const user = users.find(user => {
-        return user.email === email && user.password === password;
+    routes_1.Routes.forEach(route => {
+        app[route.method](route.route, 
+        //route.validation,
+        (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                // const errors = validationResult(req)
+                // console.log(errors)
+                // if (!errors.isEmpty()) {
+                //     return res.status(400).json({ errors: errors.array() })
+                // }
+                const result = yield (new route.controller)[route.action](req, res, next);
+                res.json(result);
+            }
+            catch (error) {
+                next(error);
+            }
+        }));
     });
-    if (!user) {
-        return res.status(404).send('User Not Found!');
-    }
-    return res.status(200).json(user);
-});
+    app.use(handleError);
+    const port = process.env.PORT || 8000;
+    app.listen(port, () => {
+        console.log(`Express server has started on port ${port}.`);
+    });
+    // route login
+    app.post('/testRoute', (req, res) => {
+    });
+})).catch((error) => console.log(error));
