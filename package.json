@@ -31,6 +31,7 @@
     "pg": "^8.8.0",
     "querystring": "^0.2.1",
     "react": "^18.2.0",
+    "react-dev-utils": "^10.0.0",
     "react-scripts": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.6",
