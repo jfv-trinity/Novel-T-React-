@@ -32,7 +32,7 @@ export function CreateBookModal(data: any) {
       authorUsername,
     };
 
-    fetch(`${process.env.REACT_APP_URL}/books`, {
+    fetch(`/books`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

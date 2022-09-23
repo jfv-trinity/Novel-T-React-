@@ -13,7 +13,7 @@ export function AccountDeletionModal(data: any) {
   const deleteConfirmation = () => {
     let accountId = user?.id;
     if (confirmation == "DELETE") {
-      fetch(`${process.env.REACT_APP_URL}/users/${accountId}`, {
+      fetch(`/users/${accountId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

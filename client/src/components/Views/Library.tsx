@@ -21,7 +21,7 @@ function Library() {
   //   userId: number
   // ): void {
   //   let saveToLibrary = { bookTitle, bookId, userId };
-  //   fetch(`${process.env.REACT_APP_URL}/libraries/${book.id}/${user.id}`, {
+  //   fetch(`/libraries/${book.id}/${user.id}`, {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function Library() {
   // }
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_URL}/libraries/${params.id}`, {
+    fetch(`/libraries/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

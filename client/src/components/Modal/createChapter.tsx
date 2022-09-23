@@ -21,7 +21,7 @@ export function CreateChapterModal(data: any) {
   const submitForm = () => {
     newChapter = { chapterTitle, context, bookId, chapterAuthor };
     console.log("the new chapter is ", newChapter);
-    fetch(`${process.env.REACT_APP_URL}/chapters`, {
+    fetch(`/chapters`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -119,7 +119,7 @@ function BookCreation() {
   //     authorId,
   //     authorUsername,
   //   };
-  //   fetch(`${process.env.REACT_APP_URL}/books`, {
+  //   fetch(`/books`, {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -151,7 +151,7 @@ function BookCreation() {
   //         spy,
   //         martial_arts,
   //       };
-  //       fetch(`${process.env.REACT_APP_URL}/bookgenres/create`, {
+  //       fetch(`/bookgenres/create`, {
   //         method: "POST",
   //         headers: {
   //           "Content-Type": "application/json",
@@ -183,7 +183,7 @@ function BookCreation() {
   //     authorId,
   //     authorUsername,
   //   };
-  //   fetch(`${process.env.REACT_APP_URL}/books`, {
+  //   fetch(`/books`, {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",

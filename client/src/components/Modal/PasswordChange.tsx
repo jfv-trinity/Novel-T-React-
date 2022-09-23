@@ -24,7 +24,7 @@ export function PasswordConfigurationModal(data: any) {
         password,
         isLoggedIn,
       };
-      fetch(`${process.env.REACT_APP_URL}/users/${id}`, {
+      fetch(`/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

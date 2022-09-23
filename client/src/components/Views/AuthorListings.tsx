@@ -13,7 +13,7 @@ function AuthorListings() {
   const [books, setBooks] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_URL}/books/search/author/${params.id}`, {
+    fetch(`/books/search/author/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

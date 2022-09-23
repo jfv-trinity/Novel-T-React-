@@ -10,7 +10,7 @@ function AnonBookInfo() {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_URL}/books/${params.id}`, {
+    fetch(`/books/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ function AnonBookInfo() {
   }, []);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_URL}/chapters/${params.id}`, {
+    fetch(`/chapters/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

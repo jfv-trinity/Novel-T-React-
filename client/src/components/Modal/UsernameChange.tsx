@@ -17,7 +17,7 @@ export function UsernameConfigurationModal(data: any) {
   const updateUsername = () => {
     if (password == user?.password) {
       let updatedUser = { id, email, username, password, isLoggedIn };
-      fetch(`${process.env.REACT_APP_URL}/users/${id}`, {
+      fetch(`/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
