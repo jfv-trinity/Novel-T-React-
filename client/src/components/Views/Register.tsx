@@ -27,7 +27,7 @@ function RegisterPage() {
     // work on this  if password1 = password2 then fetch else return password !=
     if (password == passwordConfirmation) {
       console.log(newUser);
-      fetch(`${process.env.REACT_APP_URL}/users/register`, {
+      fetch(`/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ function RegisterPage() {
         .then((response) => response.json())
         .then((data) => {
           if (data == null) {
-            fetch(`${process.env.REACT_APP_URL}/users`, {
+            fetch(`/users`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function RegisterPage() {
             });
             const loginEmail = email;
             const login = { loginEmail };
-            fetch(`${process.env.REACT_APP_URL}/users/login`, {
+            fetch(`/users/login`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
