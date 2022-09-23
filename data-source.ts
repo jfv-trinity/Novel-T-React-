@@ -38,7 +38,3 @@ else {
     subscribers: [],
 })
 }
-
-
- AppDataSource;
-
