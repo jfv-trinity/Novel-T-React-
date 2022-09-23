@@ -15,6 +15,7 @@ if (process.env.NODE_ENV == "production") {
         username: "dfwgnjbmfclrjc",
         port: 5432,
         password: "b00ed334dbaa45d25bafdf14f25226ec58fe975d44abcca842a27e2c91e7bb65",
+        // synchronize: true,
         logging: false,
         entities: [User, Book, Library, Bookgenres, Bookchapters],
         migrations: [],
