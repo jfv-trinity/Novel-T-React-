@@ -1,4 +1,3 @@
-import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { Book } from "./entity/Book"
 import { User } from "./entity/User"
