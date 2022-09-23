@@ -7,7 +7,7 @@ import { Bookchapters } from "./entity/Bookchapters"
 
 export let AppDataSource:DataSource;
 
-console.log(process.env.NODE_ENV);
+console.log("this is the process env", process.env.NODE_ENV);
 if (process.env.NODE_ENV == "production") {
     AppDataSource = new DataSource({
         type: "postgres",
