@@ -147,7 +147,7 @@ export function displayModal(element: HTMLElement | null) {
 // }
 
 // export function bookMark(book: BookProps, ) {
-//   fetch("${process.env.REACT_APP_URL}/libraries", {
+//   fetch(`${process.env.REACT_APP_URL}/libraries", {
 //     method: "POST",
 //     body: JSON.stringify({ book: book }),
 //   }).then((_res) => {
