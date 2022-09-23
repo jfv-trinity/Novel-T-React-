@@ -85,7 +85,7 @@ function ChapterEditor() {
         <button
           type="reset"
           className="btn btn-warning"
-          onClick={() => location.reload()}
+          onClick={() => window.location.reload()}
         >
           reset
         </button>

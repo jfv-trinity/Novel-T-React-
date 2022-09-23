@@ -240,7 +240,7 @@ export function checkPassword(
 }
 
 export function previousPage() {
-  history.back();
+  window.history.back();
 }
 
 export function timeoutNotifications() {

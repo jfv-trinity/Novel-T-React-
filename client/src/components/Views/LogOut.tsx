@@ -23,7 +23,7 @@ function LogOut() {
     });
     localStorage.clear();
     navigate("/");
-    location.reload();
+    window.location.reload();
   });
 
   return <React.Fragment>how are you seeing this?</React.Fragment>;

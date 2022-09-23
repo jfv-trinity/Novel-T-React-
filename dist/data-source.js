@@ -38,4 +38,3 @@ else {
         subscribers: [],
     });
 }
-exports.AppDataSource;
