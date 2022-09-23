@@ -20,6 +20,7 @@ if (process.env.NODE_ENV == "production") {
         entities: [User, Book, Library, Bookgenres, Bookchapters],
         migrations: [],
         subscribers: [],
+        ssl: true
     })
 }
 else {
