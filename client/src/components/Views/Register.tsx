@@ -40,7 +40,6 @@ function RegisterPage() {
             fetch("${process.env.REACT_APP_URL}/users", {
               method: "POST",
               headers: {
-                Accept: "application/json",
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(newUser),
@@ -50,7 +49,6 @@ function RegisterPage() {
             fetch("${process.env.REACT_APP_URL}/users/login", {
               method: "POST",
               headers: {
-                Accept: "application/json",
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(login),
