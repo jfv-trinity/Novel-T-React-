@@ -23,6 +23,7 @@ if (process.env.NODE_ENV == "production") {
     })
 }
 else {
+   
     AppDataSource = new DataSource({
     type: "postgres",
     host: "localhost",
@@ -35,5 +36,7 @@ else {
     entities: [User, Book, Library, Bookgenres, Bookchapters],
     migrations: [],
     subscribers: [],
-})
+    })
+    console.log(AppDataSource, "this is the app data source");
+     console.log(process.env.NODE_ENV, ": this is the process env");
 }
