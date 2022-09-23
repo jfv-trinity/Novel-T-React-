@@ -5,10 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   target: "node",
-  plugins: [new webpack.ProvidePlugin({ 
-  process: 'process/browser', 
-    Buffer: ['buffer', 'Buffer']
-  }), new NodePolyfillPlugin(),  new webpack.IgnorePlugin({ resourceRegExp: /^pg-native$/ })],
+  plugins: [new webpack.IgnorePlugin({ resourceRegExp: /^pg-native$/ })],
   mode: "development",
   entry: './index.ts',
   module: {
