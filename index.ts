@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
-import * as bodyParser from "body-parser";
-  import express, { Express, Request, Response } from "express";
-  import path from "path";
+import bodyParser from "body-parser";
+import express, { Express, Request, Response } from "express";
+import path from "path";
 import cors from "cors";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
@@ -53,11 +53,6 @@ AppDataSource.initialize().then(async () => {
 
   app.listen(port, () => {
     console.log(`Express server has started on port ${port}.`)
-  });
-
-  // route login
-  app.post('/testRoute', (req: Request, res: Response) => {
-   
   });
 
 }).catch((error: any) => console.log(error))
