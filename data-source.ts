@@ -20,6 +20,7 @@ if (process.env.NODE_ENV == "production") {
         entities: [User, Book, Library, Bookgenres, Bookchapters],
         migrations: [],
         subscribers: [],
+        url: "postgres://dfwgnjbmfclrjc:b00ed334dbaa45d25bafdf14f25226ec58fe975d44abcca842a27e2c91e7bb65@ec2-34-227-135-211.compute-1.amazonaws.com:5432/d7thqat7e1if1d"
     })
 }
 else {
