@@ -94,6 +94,7 @@
   "exclude": [
     "client",
     "dist",
-    "node_modules"
+    "node_modules",
+    "tsdist"
   ]
 }
