@@ -13,7 +13,7 @@ function ChapterView() {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`/chapter/${params.id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapter/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ function ChapterView() {
 
   useEffect(() => {
     if (chapter)
-      fetch(`/books/${chapter?.bookId}`, {
+      fetch(`${process.env.REACT_APP_URL}books/${chapter?.bookId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -14,7 +14,7 @@ export function TemplateModal() {
   let object: Object;
 
   const submitForm = () => {
-    fetch(`/chapters`, {
+    fetch(`${process.env.REACT_APP_URL}chapters`, {
       method: "",
       headers: {
         "Content-Type": "application/json",

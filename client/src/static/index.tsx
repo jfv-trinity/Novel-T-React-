@@ -147,7 +147,7 @@ export function displayModal(element: HTMLElement | null) {
 // }
 
 // export function bookMark(book: BookProps, ) {
-//   fetch(`/libraries", {
+//   fetch(`${process.env.REACT_APP_URL}libraries", {
 //     method: "POST",
 //     body: JSON.stringify({ book: book }),
 //   }).then((_res) => {
@@ -192,7 +192,7 @@ export function retrievePreviousChapter(chapterId: number) {
 // }
 
 // export function deleteChapter(chapterId: number) {
-//   fetch(`/chapters/${chapterId}`, {
+//   fetch(`${process.env.REACT_APP_URL}chapters/${chapterId}`, {
 //     method: "DELETE",
 //     headers: {
 //       "Content-Type": "application/json",

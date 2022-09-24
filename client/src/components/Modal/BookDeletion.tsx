@@ -8,7 +8,7 @@ export function BookDeletionModal(data: any) {
 
   const submitForm = () => {
     let bookId = data.id;
-    fetch(`/books/${bookId}`, {
+    fetch(`${process.env.REACT_APP_URL}books/${bookId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ export function ChapterDeletionModal(data: any) {
 
   const submitForm = () => {
     let chapterId = data.id;
-    fetch(`/chapters/${chapterId}`, {
+    fetch(`${process.env.REACT_APP_URL}chapters/${chapterId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

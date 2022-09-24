@@ -17,7 +17,7 @@ export function EmailConfigurationModal(data: any) {
   const updateAccountEmail = () => {
     if (password == user?.password) {
       let updatedUser = { id, email, username, password, isLoggedIn };
-      fetch(`/users/${id}`, {
+      fetch(`${process.env.REACT_APP_URL}users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

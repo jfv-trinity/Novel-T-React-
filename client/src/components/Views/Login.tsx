@@ -14,7 +14,7 @@ function Login() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const login = { loginEmail };
-    fetch(`/users/login`, {
+    fetch(`${process.env.REACT_APP_URL}users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

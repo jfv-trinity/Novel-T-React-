@@ -21,7 +21,7 @@ function ChapterEditor() {
     updatedChapter = { id, chapterTitle, context, bookId, chapterAuthor };
     console.log("this is the information for updated chapter", updatedChapter);
 
-    fetch(`/chapter/${id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapter/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ function ChapterEditor() {
   };
 
   useEffect(() => {
-    fetch(`/chapter/${params.id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapter/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

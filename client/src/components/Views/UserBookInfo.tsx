@@ -30,7 +30,7 @@ function UserBookInfo() {
     userId: number
   ): void {
     let saveToLibrary = { bookTitle, bookId, userId };
-    fetch(`/libraries/${book.id}/${user.id}`, {
+    fetch(`${process.env.REACT_APP_URL}libraries/${book.id}/${user.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,7 @@ function UserBookInfo() {
   //   NewChapter = { chapterTitle, context, bookId, chapterAuthor };
   //   console.log("this is the information for new chapter", NewChapter);
 
-  //   fetch(`/chapters`, {
+  //   fetch(`${process.env.REACT_APP_URL}chapters`, {
   //     method: "POST",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function UserBookInfo() {
   // };
 
   useEffect(() => {
-    fetch(`/books/${params.id}`, {
+    fetch(`${process.env.REACT_APP_URL}books/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ function UserBookInfo() {
   }, []);
 
   useEffect(() => {
-    fetch(`/chapters/${params.id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapters/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

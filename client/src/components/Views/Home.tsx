@@ -12,7 +12,7 @@ function HomePage() {
   let user = React.useContext(UserContext)!;
 
   useEffect(() => {
-    fetch(`/books/search/${numberOfNovelResults}`, {
+    fetch(`${process.env.REACT_APP_URL}books/search/${numberOfNovelResults}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

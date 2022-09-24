@@ -20,7 +20,7 @@ export function UpdateChapterModal(data: any) {
 
   const submitForm = () => {
     updatedChapter = { id, chapterTitle, context, bookId, chapterAuthor };
-    fetch(`/chapter/${id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapter/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export function UpdateChapterModal(data: any) {
   };
 
   useEffect(() => {
-    fetch(`/chapter/${data.id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapter/${data.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

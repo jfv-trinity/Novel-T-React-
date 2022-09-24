@@ -29,7 +29,7 @@ export function UpdateBookModal(data: any) {
       authorId,
     };
 
-    fetch(`/books/${id}`, {
+    fetch(`${process.env.REACT_APP_URL}books/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -22,7 +22,7 @@ const LibraryEntity: FC<LibraryProps> = ({
 
   function bookMark(bookTitle: string, bookId: number, userId: number): void {
     let saveToLibrary = { bookTitle, bookId, userId };
-    fetch(`/libraries/${bookId}/${userId}`, {
+    fetch(`${process.env.REACT_APP_URL}libraries/${bookId}/${userId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
