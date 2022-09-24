@@ -97,9 +97,9 @@ function BookCreation() {
 
   const submitForm = (e: any) => {
     e.preventDefault();
+    let form = e.target;
     // let genre_object = new Array();
 
-    let form = e.target;
     // const formData = new FormData(e.target),
     //   formDataObj = Object.fromEntries(formData.entries());
     console.log(fantasy, military, spy);
