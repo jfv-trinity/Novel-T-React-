@@ -70,6 +70,12 @@ export const Routes = [{
     action: "save",
 }, 
 {
+    method: "post",
+    route: "/bookGenres/create",
+    controller: BookController,
+    action: "saveGenres",
+}, 
+{
     method: "put",
     route: "/books/:id",
     controller: BookController,

@@ -1,14 +1,12 @@
-import { Button } from "../components/Buttons/Button";
-import BookEntity from "../components/Container/Book";
-
 interface GenreProps {
-  book_title?: string;
-  book_id?: number;
-  sci_fi?: boolean;
+  id?: number;
+  bookId?: number;
+  bookTitle?: string;
+  sciFi?: boolean;
   fantasy?: boolean;
   romance?: boolean;
-  action_adventure?: boolean;
-  slice_of_life?: boolean;
+  actionAdventure?: boolean;
+  sliceOfLife?: boolean;
   comedy?: boolean;
   tragedy?: boolean;
   mystery?: boolean;
@@ -21,7 +19,7 @@ interface GenreProps {
   military?: boolean;
   school?: boolean;
   spy?: boolean;
-  martial_arts?: boolean;
+  martialArts?: boolean;
 }
 
 export default GenreProps;

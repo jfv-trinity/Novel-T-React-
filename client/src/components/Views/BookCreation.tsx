@@ -91,107 +91,69 @@ function BookCreation() {
   let status = "Ongoing";
   let newBook: BookProps;
 
-  // const passedMethods = "method" as React.Dispatch<
-  //   React.SetStateAction<boolean>
-  // >;
-
   const submitForm = (e: any) => {
     e.preventDefault();
     let form = e.target;
-    // let genre_object = new Array();
-
-    // const formData = new FormData(e.target),
-    //   formDataObj = Object.fromEntries(formData.entries());
-    console.log(fantasy, military, spy);
-    // for (let i = 2; i < 20; i++) {
-    //   console.log(form[i].defaultChecked);
-    //   console.log(form[i].id);
-    //   formCheckBoxMethods[i](form[i].defaultChecked);
-    // }
-
-    // console.log(e.target[2].defaultChecked);
+    newBook = {
+      bookTitle,
+      image,
+      summary,
+      status,
+      authorId,
+      authorUsername,
+    };
+    fetch(`${process.env.REACT_APP_URL}books`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBook),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setBookId(parseInt(data.id));
+        let bookGenres: GenreProps = {
+          bookId: data.id,
+          bookTitle,
+          sciFi: sci_fi,
+          fantasy,
+          romance,
+          actionAdventure: action_adventure,
+          sliceOfLife: slice_of_life,
+          comedy,
+          tragedy,
+          mystery,
+          thriller,
+          horror,
+          isekai,
+          reincarnation,
+          transmigration,
+          historical,
+          military,
+          school,
+          spy,
+          martialArts: martial_arts,
+        };
+        fetch(`${process.env.REACT_APP_URL}bookGenres/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookGenres),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("data was reached", data);
+            navigate(`/AuthorListings/${user?.id}`);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
-  //   newBook = {
-  //     bookTitle,
-  //     image,
-  //     summary,
-  //     status,
-  //     authorId,
-  //     authorUsername,
-  //   };
-  //   fetch(`${process.env.REACT_APP_URL}books`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newBook),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setBookId(data.id);
-  //       let bookGenres: GenreProps = {
-  //         book_title: bookTitle,
-  //         book_id: bookId,
-  //         sci_fi,
-  //         fantasy,
-  //         romance,
-  //         action_adventure,
-  //         slice_of_life,
-  //         comedy,
-  //         tragedy,
-  //         mystery,
-  //         thriller,
-  //         horror,
-  //         isekai,
-  //         reincarnation,
-  //         transmigration,
-  //         historical,
-  //         military,
-  //         school,
-  //         spy,
-  //         martial_arts,
-  //       };
-  //       fetch(`${process.env.REACT_APP_URL}bookgenres/create`, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(bookGenres),
-  //       })
-  //         .then((response) => response.json())
-  //         .then((data) => {
-  //           console.log("data was reached", data);
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error:", error);
-  //         });
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-
-  //   // for item in formData => input value into GenreItem => add item into database
-  // };
-
-  // const submitForm = (e: any) => {
-  //   e.preventDefault();
-  //   newBook = {
-  //     bookTitle,
-  //     image,
-  //     summary,
-  //     status,
-  //     authorId,
-  //     authorUsername,
-  //   };
-  //   fetch(`${process.env.REACT_APP_URL}books`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newBook),
-  //   });
-  //   navigate("/AuthorListings");
-  // };
 
   return (
     <React.Fragment>

@@ -61,8 +61,14 @@ var BookController = /** @class */ (function () {
     BookController.prototype.save = function (request, response, next) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                console.log(request.body);
                 return [2 /*return*/, this.bookRepository.save(request.body)];
+            });
+        });
+    };
+    BookController.prototype.saveGenres = function (request, response, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.genreRepository.save(request.body)];
             });
         });
     };

@@ -19,8 +19,11 @@ export class BookController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        console.log(request.body)
         return this.bookRepository.save(request.body)
+    }
+
+     async saveGenres(request: Request, response: Response, next: NextFunction) {
+        return this.genreRepository.save(request.body)
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
@@ -33,7 +36,7 @@ export class BookController {
         return this.bookRepository.find({ where: { id: LessThan(parseInt(request.params.id)) } })
     }
 
-      async findByAuthor(request: Request, response: Response, next: NextFunction) {
+    async findByAuthor(request: Request, response: Response, next: NextFunction) {
         return this.bookRepository.find({ where: { authorId: (parseInt(request.params.author) )} })
     }
 

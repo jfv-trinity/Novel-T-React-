@@ -12,7 +12,7 @@ const GenreButton: FC<ButtonProps> = ({ id, onClick, ...props }) => {
           name={id}
           defaultChecked={checked}
           onChange={() => setChecked(!checked)}
-          onClick={() => onClick!(true)}
+          onClick={() => onClick!(!checked)}
         />
         <label htmlFor={id}>{id}</label>
       </li>
