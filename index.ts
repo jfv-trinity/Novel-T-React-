@@ -5,7 +5,6 @@ import path from "path";
 import cors from "cors";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
-require ('newrelic');
  
   function handleError(err:any, req:any, res:any, next:any) {
     res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status })
