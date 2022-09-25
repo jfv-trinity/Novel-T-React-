@@ -5,6 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   target: "node",
+  mode: "development",
   plugins: [new webpack.IgnorePlugin({ resourceRegExp: /^pg-native$/ })],
   entry: './index.ts',
   module: {
