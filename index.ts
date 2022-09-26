@@ -32,15 +32,6 @@ AppDataSource.initialize().then(async () => {
   app.use(cors());
   app.use(bodyParser.json())
 
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-
-    app.get('/*', function (req: Request, res: Response) {
-      console.log("this is the type of request: ", typeof req);
-      res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-    });
-  }
-
   Routes.forEach(route => {
         (app as any)[route.method](route.route,
             //route.validation,
@@ -59,6 +50,14 @@ AppDataSource.initialize().then(async () => {
             
         })
     })
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+
+    app.get('/*', function (req: Request, res: Response) {
+      res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    });
+  }
 
   app.use(handleError);
   
