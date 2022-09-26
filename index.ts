@@ -35,7 +35,8 @@ AppDataSource.initialize().then(async () => {
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
 
-    app.get('/', function (req: Request, res: Response) {
+    app.get('/*', function (req: Request, res: Response) {
+      console.log("this is the type of response: ", typeof res);
       res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
   }
