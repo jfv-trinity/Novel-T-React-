@@ -10,6 +10,7 @@ import { Routes } from "./routes";
     res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status })
 }
 
+
 AppDataSource.initialize().then(async () => {
 
   dotenv.config();
@@ -50,8 +51,10 @@ AppDataSource.initialize().then(async () => {
   app.use(handleError);
   
   const port = process.env.PORT || 8000;
-
+  
   app.listen(port, () => {
+    var http = require("http");
+    setInterval(function () { http.get("http://desolate-sands-65605.herokuapp.com"); }, 300000); // every 5 minutes (300000)
     console.log(`Express server has started on port ${port}.`)
   });
 
