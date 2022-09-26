@@ -20,6 +20,7 @@ function HomePage() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("this is the data: ", data);
         if (data) {
           setBooks(data);
         }

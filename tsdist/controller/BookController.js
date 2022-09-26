@@ -100,7 +100,7 @@ var BookController = /** @class */ (function () {
     BookController.prototype.findByAuthor = function (request, response, next) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.bookRepository.find({ where: { authorId: (parseInt(request.params.author)) } })];
+                return [2 /*return*/, this.bookRepository.find({ where: { authorId: (parseInt(request.params.id)) } })];
             });
         });
     };

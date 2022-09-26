@@ -49,7 +49,7 @@ setInterval(function () {
     http.get("http://desolate-sands-65605.herokuapp.com", function (res) {
         res.setEncoding('utf8');
         res.on('data', function (body) {
-            console.log("GET CAME BACK", body);
+            // console.log("GET CAME BACK", body);
         });
     });
 }, 300000); // every 5 minutes (300000)
@@ -98,7 +98,7 @@ AppDataSource.initialize().then(function () { return __awaiter(void 0, void 0, v
             http.get("http://desolate-sands-65605.herokuapp.com", function (res) {
                 res.setEncoding('utf8');
                 res.on('data', function (body) {
-                    console.log("GET CAME BACK", body);
+                    // console.log("GET CAME BACK", body);
                 });
             });
         });
