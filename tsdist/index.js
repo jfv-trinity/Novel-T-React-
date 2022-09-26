@@ -41,9 +41,18 @@ import path from "path";
 import cors from "cors";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
+import * as http from "http";
 function handleError(err, req, res, next) {
     res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status });
 }
+setInterval(function () {
+    http.get("http://desolate-sands-65605.herokuapp.com", function (res) {
+        res.setEncoding('utf8');
+        res.on('data', function (body) {
+            console.log("GET CAME BACK", body);
+        });
+    });
+}, 300000); // every 5 minutes (300000)
 AppDataSource.initialize().then(function () { return __awaiter(void 0, void 0, void 0, function () {
     var app, port;
     return __generator(this, function (_a) {
@@ -84,7 +93,14 @@ AppDataSource.initialize().then(function () { return __awaiter(void 0, void 0, v
         app.use(handleError);
         port = process.env.PORT || 8000;
         app.listen(port, function () {
+            setInterval(function () { http.get("http://desolate-sands-65605.herokuapp.com"); }, 300000); // every 5 minutes (300000)
             console.log("Express server has started on port ".concat(port, "."));
+            http.get("http://desolate-sands-65605.herokuapp.com", function (res) {
+                res.setEncoding('utf8');
+                res.on('data', function (body) {
+                    console.log("GET CAME BACK", body);
+                });
+            });
         });
         return [2 /*return*/];
     });
