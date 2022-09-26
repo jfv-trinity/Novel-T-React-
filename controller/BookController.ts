@@ -37,7 +37,7 @@ export class BookController {
     }
 
     async findByAuthor(request: Request, response: Response, next: NextFunction) {
-        return this.bookRepository.find({ where: { authorId: (parseInt(request.params.author) )} })
+        return this.bookRepository.find({ where: { authorId: (parseInt(request.params.id) )} })
     }
 
     async update(request: Request, response: Response, next: NextFunction) {

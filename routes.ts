@@ -97,7 +97,7 @@ export const Routes = [{
     
 {
     method: "get",
-    route: "/books/search/author/:author",
+    route: "/books/search/author/:id",
     controller: BookController,
     action: "findByAuthor",
     }, 
