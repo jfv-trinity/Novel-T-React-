@@ -36,7 +36,7 @@ AppDataSource.initialize().then(async () => {
     app.use(express.static(path.join(__dirname, '../client/build')));
 
     app.get('/*', function (req: Request, res: Response) {
-      console.log("this is the type of response: ", typeof res);
+      console.log("this is the type of request: ", typeof req);
       res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
   }
