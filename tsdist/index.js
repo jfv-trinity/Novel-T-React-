@@ -61,12 +61,6 @@ AppDataSource.initialize().then(function () { return __awaiter(void 0, void 0, v
         app.use(express.json());
         app.use(cors());
         app.use(bodyParser.json());
-        if (process.env.NODE_ENV === 'production') {
-            app.use(express.static(path.join(__dirname, '../client/build')));
-            app.get('/*', function (req, res) {
-                res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-            });
-        }
         Routes.forEach(function (route) {
             app[route.method](route.route, 
             //route.validation,
@@ -90,6 +84,12 @@ AppDataSource.initialize().then(function () { return __awaiter(void 0, void 0, v
                 });
             }); });
         });
+        if (process.env.NODE_ENV === 'production') {
+            app.use(express.static(path.join(__dirname, '../client/build')));
+            app.get('/*', function (req, res) {
+                res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+            });
+        }
         app.use(handleError);
         port = process.env.PORT || 8000;
         app.listen(port, function () {

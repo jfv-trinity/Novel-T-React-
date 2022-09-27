@@ -13,6 +13,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import Login from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
+import "./AnonAccountMenu.scss";
 
 export function AnonAccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);

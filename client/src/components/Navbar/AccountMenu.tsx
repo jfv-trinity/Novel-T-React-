@@ -13,6 +13,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../static/UserContext";
+import "./AccountMenu.scss";
 
 export function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
