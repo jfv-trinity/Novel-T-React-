@@ -23,6 +23,7 @@ import { ExampleContext } from "./static/ExampleContext";
 import AnonBookPage from "./components/Views/AnonBookInfo";
 import UserBookPage from "./components/Views/UserBookInfo";
 import BookCreation from "./components/Views/BookCreation";
+import Contact from "./components/Views/Contact";
 
 function App() {
   const user = React.useContext(UserContext)!;
@@ -58,7 +59,7 @@ function App() {
               path="Novel/:id"
               element={65 > 5 ? <UserBookPage /> : <AnonBookPage />}
             />
-
+            <Route path="Contact" element={<Contact />} />
             {/* <Route
                 path="Novel/:id"
                 element={<AnonBookPage />}
