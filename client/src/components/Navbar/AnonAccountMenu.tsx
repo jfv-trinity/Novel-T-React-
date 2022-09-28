@@ -27,7 +27,14 @@ export function AnonAccountMenu() {
   };
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography component={Link} to="/" sx={{ minWidth: 100 }}>
           Home
         </Typography>
@@ -35,12 +42,12 @@ export function AnonAccountMenu() {
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
+            sx={{ mr: "17px", position: "relative" }}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>A</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
           </IconButton>
         </Tooltip>
       </Box>

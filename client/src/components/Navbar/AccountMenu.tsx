@@ -14,6 +14,7 @@ import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../static/UserContext";
 import "./AccountMenu.scss";
+import { Margin } from "@mui/icons-material";
 
 export function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,28 +29,54 @@ export function AccountMenu() {
   };
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Typography component={Link} to="/Contact" sx={{ minWidth: 100 }}>
-          Contact
-        </Typography>
-        <Typography component={Link} to="/" sx={{ minWidth: 100 }}>
-          Home
-        </Typography>
-        <Typography component={Link} to="/Profile" sx={{ minWidth: 100 }}>
-          Profile
-        </Typography>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? "account-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <Typography
+            className="navbarLink"
+            component={Link}
+            to="/Contact"
+            sx={{ minWidth: 100 }}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
-        </Tooltip>
+            Contact
+          </Typography>
+          <Typography
+            className="navbarLink"
+            component={Link}
+            to="/"
+            sx={{ minWidth: 100 }}
+          >
+            Home
+          </Typography>
+          <Typography
+            className="navbarLink"
+            component={Link}
+            to="/Profile"
+            sx={{ minWidth: 100 }}
+          >
+            Profile
+          </Typography>
+        </div>
+        <div>
+          <Tooltip title="Account settings">
+            <IconButton
+              onClick={handleClick}
+              size="small"
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              sx={{ mr: "17px", position: "relative" }}
+            >
+              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            </IconButton>
+          </Tooltip>
+        </div>
       </Box>
       <Menu
         anchorEl={anchorEl}
