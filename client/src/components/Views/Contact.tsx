@@ -8,11 +8,15 @@ const Contact = () => {
       <Helmet>
         <style>{`body { background-image: ${styles.default.background}; } `}</style>
       </Helmet>
-      <embed
-        className="resume"
-        src={styles.default.resume.slice(4, styles.default.resume.length - 1)}
-      />
-      <embed className="resume" src={styles.default.resume} />
+      <div>
+        <embed
+          className="resume"
+          src={styles.default.resume.slice(4, styles.default.resume.length - 1)}
+        />
+      </div>
+      <div>
+        <embed className="resume" src={styles.default.resume} />
+      </div>
     </div>
   );
 };
