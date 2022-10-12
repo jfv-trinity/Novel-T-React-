@@ -16,10 +16,11 @@
 }
 
  $resume: url(../../static/myResume.pdf);
- 
  $background: url(../../static/images/resume-background.jpg);
+ $srcBackground: src(url(../../static/images/resume-background.jpg));
 
  :export {
     resume: $resume;
     background: $background;
+    srcBackground: $srcBackground;
  }

@@ -16,6 +16,9 @@ const Contact = () => {
       <div>
         <embed className="2" src={styles.default.resume} />
       </div>
+      <div>
+        <img className="3" src={styles.default.srcBackground} />
+      </div>
     </div>
   );
 };

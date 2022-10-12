@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.b65f7883.css",
-    "main.js": "/static/js/main.de58b677.js",
+    "main.js": "/static/js/main.f6c2d696.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/resume-background.jpg": "/static/media/resume-background.40a9e1f4147013ce9857.jpg",
     "static/media/Login-Background.jpg": "/static/media/Login-Background.825e4de765ab3d8743e8.jpg",
@@ -11,11 +11,11 @@
     "static/media/Notification-Icon-CareTaker.jpg": "/static/media/Notification-Icon-CareTaker.557775743585afa0ffc7.jpg",
     "index.html": "/index.html",
     "main.b65f7883.css.map": "/static/css/main.b65f7883.css.map",
-    "main.de58b677.js.map": "/static/js/main.de58b677.js.map",
+    "main.f6c2d696.js.map": "/static/js/main.f6c2d696.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b65f7883.css",
-    "static/js/main.de58b677.js"
+    "static/js/main.f6c2d696.js"
   ]
 }
