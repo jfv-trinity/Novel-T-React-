@@ -45,7 +45,7 @@ body {
 }
 
 $background: url(../../static/images/Login-Background.jpg);
-$srcBackground: src(url(../../static/images/Login-Background.jpg));
+$srcBackground: url(../../static/images/Login-Background.jpg);
 
 :export { 
     background: $background;

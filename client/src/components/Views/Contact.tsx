@@ -12,6 +12,7 @@ const Contact = () => {
         className="resume"
         src={styles.default.resume.slice(4, styles.default.resume.length - 1)}
       />
+      <embed className="resume" src={styles.default.resume} />
     </div>
   );
 };
