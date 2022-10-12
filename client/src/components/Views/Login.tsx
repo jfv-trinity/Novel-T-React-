@@ -53,7 +53,7 @@ function Login() {
     <React.Fragment>
       <div>
         <Helmet>
-          <style>{`body { background-image: ${styles.default.background}; } `}</style>
+          <style>{`body { background-image: ${styles.default.srcBackground}; } `}</style>
         </Helmet>
         <form method="POST" onSubmit={handleSubmit} className="login-form">
           {/* <br />

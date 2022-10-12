@@ -45,7 +45,13 @@ body {
 }
 
 $background: url(../../static/images/Login-Background.jpg);
+$srcBackground: src("../../static/images/Login-Background.jpg");
 
 :export { 
     background: $background;
+    srcBackground: $srcBackground;
 }
+
+// use the import instead of variables when in production
+// webpack: ///mini-css-extract-plugin//static/media/Login-Background.825e4de….jpg
+// /static/media/sign-in-form.d337702….jpg
