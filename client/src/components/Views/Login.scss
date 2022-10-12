@@ -45,11 +45,11 @@ body {
 }
 
 $background: url(../../static/images/Login-Background.jpg);
-$srcBackground: src("../../static/images/Login-Background.jpg");
+$srcBackground: src(url(../../static/images/Login-Background.jpg));
 
 :export { 
     background: $background;
-    srcBackground: $srcBackground;
+    srcBackground: $srcBackground
 }
 
 // use the import instead of variables when in production
