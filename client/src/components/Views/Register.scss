@@ -3,7 +3,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
-    width: 60%;
+    width: 30%;
     height: 50%;
     background-color: white;
     top: 50%;
@@ -12,6 +12,10 @@
     transform: translate(-50%, -50%);
     position: absolute;
     border: 7px solid black;
+}
+
+.w3-section{
+    margin-top:10%;
 }
 
 .form-control{
