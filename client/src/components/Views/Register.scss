@@ -1,0 +1,25 @@
+.register-form {
+    background-image: url(../../static/images/sign-in-form.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 60%;
+    height: 50%;
+    background-color: white;
+    top: 50%;
+    margin-right: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border: 7px solid black;
+}
+
+.form-control{
+ background-color: black;
+ color: white;
+}
+$background: url(../../static/images/Login-Background.jpg);
+
+:export {
+    background: $background;
+}

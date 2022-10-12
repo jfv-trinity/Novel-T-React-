@@ -1,0 +1,26 @@
+.NotificationContainer {
+    height: 140px;
+    width: 700px;
+    align-items: center;
+    display: inline-flex;
+    background-color: #d8dbc6;
+    border: black 5px solid;
+}
+
+.Icon {
+    height: 100%;
+    min-width: 24%;
+}
+
+.Context {
+    margin: 10px;
+    text-align: left;
+    margin-left: 15px;
+}
+
+$notificationIcon: (url(../../static/images/Notification-Icon-CareTaker.jpg));
+// $notificationTextBox: url(../../static/images/Login-Background.jpg);
+
+:export {
+    notificationIcon: $notificationIcon;
+}

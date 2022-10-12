@@ -1,7 +1,24 @@
-.resumeFrame {
-    width: 820px;
-    height: 1000px;
+.resume {
+    width: 70%;
+    height: 1200px;
     position: inherit;
     margin: auto;
-    border: 1px solid black;
+    margin-top: 50px;
+    margin-bottom: 50px
 }
+
+.navbar{
+    background-color: white;
+}
+
+.html{
+    overflow-x: hidden;
+}
+
+ $resume: url(../../static/myResume.pdf);
+ $background: url(../../static/images/resume-background.jpg);
+
+ :export {
+    resume: $resume;
+    background: $background;
+ }
