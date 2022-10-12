@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-// import * as styles from "./Contact.scss";
+import "./Contact.scss";
 import pdf from "../../static/myResume.pdf";
 import background from "../../static/images/resume-background.jpg";
 
