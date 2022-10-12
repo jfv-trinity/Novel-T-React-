@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import * as styles from "./Contact.scss";
 
@@ -10,12 +9,12 @@ const Contact = () => {
       </Helmet>
       <div>
         <embed
-          className="resume"
+          className="1"
           src={styles.default.resume.slice(4, styles.default.resume.length - 1)}
         />
       </div>
       <div>
-        <embed className="resume" src={styles.default.resume} />
+        <embed className="2" src={styles.default.resume} />
       </div>
     </div>
   );
