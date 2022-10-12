@@ -4,13 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserProvider } from "./static/UserContext";
+import { ReactNotifications } from "react-notifications-component";
+import { NotificationProvider } from "./static/NotificationContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <UserProvider isLoggedIn={false}>
-    <App />
+    <ReactNotifications />
+    <NotificationProvider>
+      <App />
+    </NotificationProvider>
   </UserProvider>
 );
 

@@ -24,6 +24,7 @@ import AnonBookPage from "./components/Views/AnonBookInfo";
 import UserBookPage from "./components/Views/UserBookInfo";
 import BookCreation from "./components/Views/BookCreation";
 import Contact from "./components/Views/Contact";
+import Info from "./components/Views/Info";
 
 function App() {
   const user = React.useContext(UserContext)!;
@@ -55,6 +56,7 @@ function App() {
             <Route path="MyLibrary/:id" element={<Library />} />
             <Route path="Novel/Listings" element={<HomePage />} />
             <Route path="AuthorListings/:id" element={<AuthorListings />} />
+            <Route path="/info" element={<Info />} />
             <Route
               path="Novel/:id"
               element={65 > 5 ? <UserBookPage /> : <AnonBookPage />}

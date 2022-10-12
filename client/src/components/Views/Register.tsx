@@ -1,9 +1,11 @@
 import { body } from "express-validator";
 import * as React from "react";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import UserProps from "../../common/User";
 import { UserContext } from "../../static/UserContext";
+import * as styles from "./Register.scss";
 
 function RegisterPage() {
   const { LoginUser } = React.useContext(UserContext)!;
@@ -70,68 +72,73 @@ function RegisterPage() {
 
   return (
     <React.Fragment>
-      <form className="w3-container" id="form-register" onSubmit={handleSubmit}>
-        <div className="w3-section">
-          <p>
-            <b>Email Address</b>
-          </p>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <br />
-          <label>
-            <b>User Name</b>
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              name="username"
-              placeholder="Enter Username"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <br />
-          <label>
-            <b>Password</b>
-            <input
-              type="password"
-              className="form-control"
-              id="password1"
-              name="password1"
-              placeholder="Enter Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <p id="password1-error" className="hidden-subtext">
-            this is subtext
-          </p>
-          <br />
-          <label>
-            <b>Re-enter Password</b>
-            <input
-              type="password"
-              className="form-control"
-              id="password2"
-              name="password2"
-              placeholder="Re-enter Password"
-              onChange={(e) => setPasswordConfirmation(e.target.value)}
-            />
-          </label>
-          <p id="password2-error" className="hidden-subtext">
-            this is subtext
-          </p>
-          <button
-            className="w3-button w3-block w3-green w3-section w3-padding"
-            type="submit"
-          >
-            Create Account
-          </button>
-        </div>
-      </form>
+      <div>
+        <Helmet>
+          <style>{`body { background-image: ${styles.default.background}; } `}</style>
+        </Helmet>
+        <form
+          className="register-form"
+          id="form-register"
+          onSubmit={handleSubmit}
+        >
+          <div className="w3-section">
+            <label>
+              <b>Email Address</b>
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                placeholder="Enter email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              <b>User Name</b>
+              <input
+                type="text"
+                className="form-control"
+                id="username"
+                name="username"
+                placeholder="Enter Username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              <b>Password</b>
+              <input
+                type="password"
+                className="form-control"
+                id="password1"
+                name="password1"
+                placeholder="Enter Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              <b>Re-enter Password</b>
+              <input
+                type="password"
+                className="form-control"
+                id="password2"
+                name="password2"
+                placeholder="Re-enter Password"
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+              />
+            </label>
+            <div>
+              <button
+                className="w3-button w3-block w3-green w3-section w3-padding"
+                type="submit"
+              >
+                Create Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </React.Fragment>
   );
 }

@@ -32,6 +32,9 @@ export class Book {
   @Column("character varying", { name: "author_username"})
   authorUsername: string;
 
+  @Column("character varying", { name: "author_pen_name"})
+  authorPenName: string;
+
   @Column({type: "integer", name: "author_id"})
   authorId: number;
 

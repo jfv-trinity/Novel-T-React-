@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import "./Contact.scss";
+import { Helmet } from "react-helmet";
+import * as styles from "./Contact.scss";
 
 const Contact = () => {
   return (
-    <React.Fragment>
-      <iframe
-        title="resumeFrame"
-        src="https://docs.google.com/document/d/e/2PACX-1vQJNyRZG4x3MOkFtdljPZu04Q5RjCfdYAS6itAQsxU3y9JAlkFXnKbvK1_s0edp8g/pub?embedded=true"
-        className="resumeFrame"
-      ></iframe>
-    </React.Fragment>
+    <div>
+      <Helmet>
+        <style>{`body { background-image: ${styles.default.background}; } `}</style>
+      </Helmet>
+      <embed
+        className="resume"
+        src={styles.default.resume.slice(4, styles.default.resume.length - 1)}
+      />
+    </div>
   );
 };
 

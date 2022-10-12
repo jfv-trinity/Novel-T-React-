@@ -9,13 +9,14 @@ import LibraryEntity from "../components/Container/Library";
 export function displayBooks(books: any[]) {
   return books.map((book) => {
     return (
-      <div key={book.id}>
+      <div key={book.id} className="novelC">
         <BookEntity
           bookTitle={book.bookTitle}
           image={book.image}
           MRchapter={book.MRchapter}
           Rchapter={book.Rchapter}
-          authorUsername={book.author}
+          authorUsername={book.authorUsername}
+          authorPenName={book.authorPenName}
           authorId={book.authorId}
           id={book.id}
         />

@@ -3,10 +3,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Any } from "typeorm";
 import { UserContext, UserProvider } from "../../static/UserContext";
+import { Helmet } from "react-helmet";
+import * as styles from "./Login.scss";
+import { NotificationContext } from "../../static/NotificationContext";
+import * as careTaker from "../../static/images/Notification-Icon-CareTaker.jpg";
 
 function Login() {
   const navigate = useNavigate();
   const { LoginUser } = React.useContext(UserContext)!;
+  const {
+    GetErrorMessage,
+    GetAvatarImage,
+    HandleNotification,
+    MyNotification,
+  } = React.useContext(NotificationContext)!;
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -28,6 +38,10 @@ function Login() {
           console.log("data: ", data);
           LoginUser(data);
           navigate(`/MyLibrary/${data.id}`);
+        } else {
+          HandleNotification(
+            MyNotification(GetErrorMessage("login"), GetAvatarImage("elf"))
+          );
         }
       })
       .catch((error) => {
@@ -37,46 +51,56 @@ function Login() {
 
   return (
     <React.Fragment>
-      <form method="POST" onSubmit={handleSubmit}>
-        <h5 style={{ textAlign: "center" }}>Login</h5>
-        <div className="form-group">
-          <label>
-            {" "}
-            <b>Email Address</b>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              placeholder="Enter email/username"
-              onChange={(e) => setLoginEmail(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="form-group">
-          <label>
-            <b>Password</b>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              placeholder="Enter password"
-              onChange={(e) => setLoginPassword(e.target.value)}
-            />
-          </label>
-        </div>
-        <input type="hidden" name="type" value="login" />
-        <br />
-        <button
-          type="submit"
-          id="submit-button"
-          value="Send Form"
-          className="btn btn-primary"
-        >
-          Login
-        </button>
-      </form>
+      <div>
+        <Helmet>
+          <style>{`body { background-image: ${styles.default.background}; } `}</style>
+        </Helmet>
+        <form method="POST" onSubmit={handleSubmit} className="login-form">
+          {/* <br />
+          <h5 style={{ textAlign: "center" }}>Sign-In</h5> */}
+          <br />
+          <div className="form-group top">
+            <label>
+              <b>Email Address</b>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter email/username"
+                onChange={(e) => setLoginEmail(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className="form-group bottom">
+            <label>
+              <b>Password</b>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                onChange={(e) => setLoginPassword(e.target.value)}
+              />
+            </label>
+          </div>
+          <button
+            type="submit"
+            id="submit-button"
+            value="Send Form"
+            className="btn btn-primary"
+          >
+            Sign-in
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => window.history.back()}
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
     </React.Fragment>
   );
 }

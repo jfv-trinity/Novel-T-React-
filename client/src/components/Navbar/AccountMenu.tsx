@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../static/UserContext";
 import "./AccountMenu.scss";
 import { Margin } from "@mui/icons-material";
+import UserProps from "../../common/User";
 
 export function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -52,16 +53,16 @@ export function AccountMenu() {
             to="/"
             sx={{ minWidth: 100 }}
           >
-            Home
+            Dashboard
           </Typography>
-          <Typography
+          {/* <Typography
             className="navbarLink"
             component={Link}
             to="/Profile"
             sx={{ minWidth: 100 }}
           >
             Profile
-          </Typography>
+          </Typography> */}
         </div>
         <div>
           <Tooltip title="Account settings">
@@ -73,7 +74,9 @@ export function AccountMenu() {
               aria-expanded={open ? "true" : undefined}
               sx={{ mr: "17px", position: "relative" }}
             >
-              <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+              <Avatar sx={{ width: 32, height: 32 }}>
+                {user.username![0]}
+              </Avatar>
             </IconButton>
           </Tooltip>
         </div>

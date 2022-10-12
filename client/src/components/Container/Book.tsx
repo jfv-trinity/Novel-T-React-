@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { BookDeletionModal } from "../Modal/BookDeletion";
 import { UpdateBookModal } from "../Modal/updateBook";
+import tempImage from "../../static/images/icon.png";
+import "../Views/Home.scss";
 
 const BookEntity: FC<BookProps> = ({
   id,
@@ -14,6 +16,7 @@ const BookEntity: FC<BookProps> = ({
   summary,
   authorId,
   authorUsername,
+  authorPenName,
   status,
   user,
   ...props
@@ -31,6 +34,7 @@ const BookEntity: FC<BookProps> = ({
     status,
     authorId,
     authorUsername,
+    authorPenName,
   };
 
   useEffect(() => {
@@ -50,11 +54,20 @@ const BookEntity: FC<BookProps> = ({
 
   return (
     <React.Fragment>
-      <div onClick={() => retrieveBook(id!)}>
-        <img src={image} height="50" width="50" className="book-cover"></img>
-        <b>{bookTitle}</b> - Author:{authorUsername}
-        <p>The book id is: {id}</p>
-        <p>The author id is: {authorId}</p>
+      <div className="novelContainer" onClick={() => retrieveBook(id!)}>
+        <img src={tempImage} className="novelCover"></img>
+        <div className="novelContext">
+          <div className="novelTitle space">
+            <b>{bookTitle}</b>
+          </div>
+          <div className="novelStats space">
+            <b>Author: {authorUsername}</b>
+            <b>Chapters: {}</b>
+            <b>Status: {status}</b>
+          </div>
+          <div className="space">populate line with genres of novel</div>
+          <div className="space">populate line novel's catcher</div>
+        </div>
       </div>
       <div>
         {authorization ? (

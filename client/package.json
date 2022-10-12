@@ -7,6 +7,8 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
+    "@react-pdf-viewer/core": "^3.7.0",
+    "@react-pdf-viewer/default-layout": "^3.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,9 +16,17 @@
     "@types/node": "^16.11.59",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
+    "@types/react-notifications-component": "^3.1.1",
+    "node-sass": "^7.0.3",
+    "pdfjs-dist": "^2.16.105",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-doc-viewer": "^0.1.5",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-notification-component": "^1.1.4",
+    "react-notifications-component": "^4.0.1",
+    "react-pdf": "^5.7.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typeorm": "^0.3.10",
@@ -48,6 +58,8 @@
     ]
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.5",
+    "@types/react-pdf": "^5.7.2",
     "sass": "^1.54.9"
   }
 }

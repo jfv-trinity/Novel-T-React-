@@ -16,6 +16,7 @@ interface BookProps{
     rank?: number;
     rating?: number;
     user?: UserProps;
+    authorPenName?: string;
 }
 
 export default BookProps;

@@ -35,21 +35,33 @@ export function AnonAccountMenu() {
           justifyContent: "space-between",
         }}
       >
-        <Typography component={Link} to="/" sx={{ minWidth: 100 }}>
-          Home
-        </Typography>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            aria-controls={open ? "account-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            sx={{ mr: "17px", position: "relative" }}
+        <div>
+          <Typography
+            className="navbarLink"
+            component={Link}
+            to="/Contact"
+            sx={{ minWidth: 100 }}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
-        </Tooltip>
+            Contact
+          </Typography>
+          <Typography component={Link} to="/" sx={{ minWidth: 100 }}>
+            Dashboard
+          </Typography>
+        </div>
+        <div>
+          <Tooltip title="Account settings">
+            <IconButton
+              onClick={handleClick}
+              size="small"
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              sx={{ mr: "17px", position: "relative" }}
+            >
+              <Avatar sx={{ width: 32, height: 32 }}>A</Avatar>
+            </IconButton>
+          </Tooltip>
+        </div>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -89,10 +101,10 @@ export function AnonAccountMenu() {
         <MenuItem component={Link} to="/login">
           <Login /> Login
         </MenuItem>
+        <Divider />
         <MenuItem component={Link} to="/register">
           <PersonAdd /> Create Account
         </MenuItem>
-        <Divider />
       </Menu>
     </React.Fragment>
   );
