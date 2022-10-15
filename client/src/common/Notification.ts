@@ -10,6 +10,8 @@ interface NotificationProps{
     HandleNotification?: any;
     GetAvatarImage?: any;
     GetErrorMessage?: any;
+    Avatars?: any;
+    Errors?: any;
 }
 
 export default NotificationProps;

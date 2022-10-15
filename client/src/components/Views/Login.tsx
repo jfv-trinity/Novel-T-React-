@@ -7,11 +7,14 @@ import { Helmet } from "react-helmet";
 import * as styles from "./Login.scss";
 import { NotificationContext } from "../../static/NotificationContext";
 import * as careTaker from "../../static/images/Notification-Icon-CareTaker.jpg";
+import background from "../../static/images/Login-Background.jpg";
 
 function Login() {
   const navigate = useNavigate();
   const { LoginUser } = React.useContext(UserContext)!;
   const {
+    Avatars,
+    Errors,
     GetErrorMessage,
     GetAvatarImage,
     HandleNotification,
@@ -40,7 +43,10 @@ function Login() {
           navigate(`/MyLibrary/${data.id}`);
         } else {
           HandleNotification(
-            MyNotification(GetErrorMessage("login"), GetAvatarImage("elf"))
+            MyNotification(
+              GetErrorMessage(Errors.login),
+              GetAvatarImage(Avatars.elf)
+            )
           );
         }
       })
@@ -53,7 +59,7 @@ function Login() {
     <React.Fragment>
       <div>
         <Helmet>
-          <style>{`body { background-image: ${styles.default.srcBackground}; } `}</style>
+          <style>{`body { height: 100%; background-image: ${`url(${background});`} `}</style>
         </Helmet>
         <form method="POST" onSubmit={handleSubmit} className="login-form">
           {/* <br />

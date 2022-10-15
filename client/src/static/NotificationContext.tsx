@@ -67,10 +67,12 @@ export const NotificationProvider: React.FC<
     nazghoul,
   }
 
-  function GetAvatarImage(avatar: Avatars): string {
+  function GetAvatarImage(avatar: Avatars) {
     switch (avatar) {
       case Avatars.elf:
         return careTaker.default;
+      case Avatars.nazghoul:
+        return "this returns a nazghoul";
       default: {
         return careTaker.default;
       }
@@ -87,7 +89,7 @@ export const NotificationProvider: React.FC<
     logout,
   }
 
-  function GetErrorMessage(Error: Errors): string {
+  function GetErrorMessage(Error: Errors) {
     switch (Error) {
       case Errors.login:
         return "It seems you can't come in. See if trying again works or become a member if you haven't already.";
@@ -102,7 +104,7 @@ export const NotificationProvider: React.FC<
       case Errors.logout:
         return "";
       default: {
-        return careTaker.default;
+        return "The issue encountered does not match existing Errors";
       }
     }
   }
@@ -128,6 +130,8 @@ export const NotificationProvider: React.FC<
   return (
     <NotificationContext.Provider
       value={{
+        Errors,
+        Avatars,
         MyNotification,
         HandleNotification,
         GetAvatarImage,

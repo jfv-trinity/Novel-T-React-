@@ -5,7 +5,9 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import UserProps from "../../common/User";
 import { UserContext } from "../../static/UserContext";
-import * as styles from "./Register.scss";
+import "./Register.scss";
+import pageBackground from "../../static/images/Login-Background.jpg";
+// import formBackground from "../../static/images/sign-in-form.jpg";
 
 function RegisterPage() {
   const { LoginUser } = React.useContext(UserContext)!;
@@ -74,7 +76,7 @@ function RegisterPage() {
     <React.Fragment>
       <div>
         <Helmet>
-          <style>{`body { background-image: ${styles.default.background}; } `}</style>
+          <style>{`body { height: 100%; background-image: ${`url(${pageBackground});`} `}</style>
         </Helmet>
         <form
           className="register-form"
