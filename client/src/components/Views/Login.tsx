@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Any } from "typeorm";
 import { UserContext, UserProvider } from "../../static/UserContext";
 import { Helmet } from "react-helmet";
-import * as styles from "./Login.scss";
+import "./Login.scss";
 import { NotificationContext } from "../../static/NotificationContext";
 import * as careTaker from "../../static/images/Notification-Icon-CareTaker.jpg";
 import background from "../../static/images/Login-Background.jpg";
