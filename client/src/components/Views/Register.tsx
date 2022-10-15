@@ -76,7 +76,7 @@ function RegisterPage() {
     <React.Fragment>
       <div>
         <Helmet>
-          <style>{`body { height: 100%; background-image: ${`url(${pageBackground});`} `}</style>
+          <style>{`body { background-image: ${`url(${pageBackground});`} `}</style>
         </Helmet>
         <form
           className="register-form"
