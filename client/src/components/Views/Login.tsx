@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Any } from "typeorm";
 import { UserContext, UserProvider } from "../../static/UserContext";
 import { Helmet } from "react-helmet";
 import "./Login.scss";

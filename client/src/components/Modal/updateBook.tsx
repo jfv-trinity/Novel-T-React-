@@ -43,7 +43,7 @@ export function UpdateBookModal(data: any) {
     <React.Fragment>
       <Modal
         show={data.show}
-        onHide={() => data.setShow(false)}
+        onHide={() => data.handleClose(data.show)}
         backdrop="static"
         keyboard={false}
       >
