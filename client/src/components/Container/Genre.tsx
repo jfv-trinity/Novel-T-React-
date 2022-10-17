@@ -5,17 +5,15 @@ const GenreButton: FC<ButtonProps> = ({ id, onClick, ...props }) => {
 
   return (
     <React.Fragment>
-      <li>
-        <input
-          type="checkbox"
-          id={id}
-          name={id}
-          defaultChecked={checked}
-          onChange={() => setChecked(!checked)}
-          onClick={() => onClick!(!checked)}
-        />
-        <label htmlFor={id}>{id}</label>
-      </li>
+      <input
+        type="checkbox"
+        id={id}
+        name={id}
+        defaultChecked={checked}
+        onChange={() => setChecked(!checked)}
+        onClick={() => onClick!(!checked)}
+      />
+      <label htmlFor={id}>{id}</label>
     </React.Fragment>
   );
 };

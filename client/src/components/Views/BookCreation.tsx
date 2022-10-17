@@ -12,24 +12,24 @@ import GenreProps from "../../common/Genres";
 function BookCreation() {
   const user = useContext(UserContext);
   const formCheckBoxes = [
-    "sci_fi",
-    "fantasy",
-    "romance",
-    "action_adventure",
-    "slice_of_life",
-    "comedy",
-    "tragedy",
-    "mystery",
-    "thriller",
-    "horror",
-    "isekai",
-    "reincarnation",
-    "transmigration",
-    "historical",
-    "military",
-    "school",
-    "spy",
-    "martial_arts",
+    "Sci-fi",
+    "Fantasy",
+    "Romance",
+    "Action & Adventure",
+    "Slice of life",
+    "Comedy",
+    "Tragedy",
+    "Mystery",
+    "Thriller",
+    "Horror",
+    "Isekai",
+    "Reincarnation",
+    "Transmigration",
+    "Historical",
+    "Military",
+    "School",
+    "Spy",
+    "Martial arts",
   ];
 
   const navigate = useNavigate();
@@ -180,14 +180,14 @@ function BookCreation() {
           <ul className="ks-cboxtags">
             {formCheckBoxes.map((genre, index) => {
               return (
-                <div key={genre}>
+                <li key={genre}>
                   <Form.Group className={index.toString()} controlId={genre}>
                     <GenreButton
                       id={genre}
                       onClick={formCheckBoxMethods[index]}
                     />
                   </Form.Group>
-                </div>
+                </li>
               );
             })}
           </ul>
