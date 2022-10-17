@@ -130,7 +130,7 @@ export function AccountMenu() {
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Add/Edit Book
+          Add Novel
         </MenuItem>
         <MenuItem component={Link} to="/Profile">
           <ListItemIcon>

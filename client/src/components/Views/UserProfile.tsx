@@ -45,7 +45,7 @@ function UserProfile() {
             <div className="right">
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary btn-edit"
                 id="email-change"
                 onClick={() =>
                   setShowEmailConfiguration(!showEmailConfiguration)
@@ -65,7 +65,7 @@ function UserProfile() {
             <div className="right">
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary btn-edit"
                 id="username-change"
                 onClick={() =>
                   setShowUsernameConfiguration(!showUsernameConfiguration)

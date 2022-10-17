@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6100b82b.css",
-    "main.js": "/static/js/main.dab4f2b7.js",
+    "main.css": "/static/css/main.943b4935.css",
+    "main.js": "/static/js/main.9fc864a7.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/resume-background.jpg": "/static/media/resume-background.40a9e1f4147013ce9857.jpg",
     "static/media/Login-Background.jpg": "/static/media/Login-Background.825e4de765ab3d8743e8.jpg",
@@ -10,12 +10,12 @@
     "static/media/myResume.pdf": "/static/media/myResume.07136843cb5cf35a3c9c.pdf",
     "static/media/Notification-Icon-CareTaker.jpg": "/static/media/Notification-Icon-CareTaker.557775743585afa0ffc7.jpg",
     "index.html": "/index.html",
-    "main.6100b82b.css.map": "/static/css/main.6100b82b.css.map",
-    "main.dab4f2b7.js.map": "/static/js/main.dab4f2b7.js.map",
+    "main.943b4935.css.map": "/static/css/main.943b4935.css.map",
+    "main.9fc864a7.js.map": "/static/js/main.9fc864a7.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6100b82b.css",
-    "static/js/main.dab4f2b7.js"
+    "static/css/main.943b4935.css",
+    "static/js/main.9fc864a7.js"
   ]
 }
