@@ -13,7 +13,11 @@
 }
 
 .w3-section{
-    margin-top: 10%;
+    left: 50%;
+    position: absolute;
+    top: 38%;
+    -webkit-transform: translate(-50%, -50%);
+    width: 55%;
 }
 
 .account-button{
