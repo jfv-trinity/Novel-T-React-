@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { UserContext } from "../../static/UserContext";
 import UserProps from "../../common/User";
 import { displayBooks } from "../../static";
+import background from "../../static/images/Personal-Library.jpg";
+import { Helmet } from "react-helmet";
 
 function HomePage() {
   const numberOfNovelResults = 25;
@@ -32,9 +34,14 @@ function HomePage() {
 
   return (
     <React.Fragment>
-      <div className="container">
-        <h1>Recently Listed</h1>
-        <div>{displayBooks(books)}</div>
+      <Helmet>
+        <style>{`body { height: 100%; background-image: ${`url(${background});`} `}</style>
+      </Helmet>
+      <div className="container island">
+        <h1 className="centerDisplay">Recently Listed</h1>
+        <div className="container listingsContainer">
+          <div>{displayBooks(books)}</div>
+        </div>
       </div>
     </React.Fragment>
   );

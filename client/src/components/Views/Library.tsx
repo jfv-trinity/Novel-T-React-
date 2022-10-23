@@ -5,6 +5,9 @@ import UserProps from "../../common/User";
 import { displayBooks, displayLibraryBooks } from "../../static";
 import { UserContext } from "../../static/UserContext";
 import BookEntity from "../Container/Book";
+import background from "../../static/images/Personal-Library.jpg";
+import { Helmet } from "react-helmet";
+import "./Library.scss";
 
 function Library() {
   // const { state }: UserProps = useLocation();
@@ -57,7 +60,10 @@ function Library() {
 
   return (
     <React.Fragment>
-      <div className="container">
+      <Helmet>
+        <style>{`body { background-image: ${`url(${background});`} `}</style>
+      </Helmet>
+      <div className="container collection">
         <h1>{user.username}'s Collection</h1>
         <div>{books ? displayLibraryBooks(books, user!) : null}</div>
       </div>

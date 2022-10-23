@@ -1,21 +1,23 @@
 .register-form {
-    background-image: url(../../static/images/sign-in-form.jpg);
+    background-image: url(../../static/images/sign-in-formV2.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
-    width: 30%;
+    background-size: contain;
+    width: 55%;
     height: 50%;
-    background-color: white;
     top: 50%;
     margin-right: -50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    border: 7px solid black;
 }
 
 .w3-section{
-    margin-top:10%;
+    margin-top: 10%;
+}
+
+.account-button{
+    margin: 4%;
 }
 
 // .form-control{

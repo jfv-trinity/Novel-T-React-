@@ -9,7 +9,7 @@ const Contact = () => {
     <div>
       <Helmet>
         {/* <style>{`body { background-image: ${background}; } `}</style> */}
-        <style>{`body { height: 100%; background-image: ${`url(${background});`} `}</style>
+        <style>{`body { overflow:auto; height: 100%; background-image: ${`url(${background});`} `}</style>
       </Helmet>
       <embed className="resume" src={pdf} />
     </div>

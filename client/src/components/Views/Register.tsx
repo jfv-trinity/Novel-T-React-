@@ -132,7 +132,7 @@ function RegisterPage() {
             </label>
             <div>
               <button
-                className="w3-button w3-block w3-green w3-section w3-padding"
+                className="w3-button w3-block w3-green w3-section w3-padding account-button"
                 type="submit"
               >
                 Create Account
