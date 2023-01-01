@@ -3,6 +3,7 @@ import { UserContext } from "../../static/UserContext";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import "./modalStyles.scss";
 
 export function ChapterDeletionModal(data: any) {
   const user = useContext(UserContext);
@@ -29,7 +30,13 @@ export function ChapterDeletionModal(data: any) {
         <Modal.Header closeButton>
           <Modal.Title>Chapter Deletion</Modal.Title>
         </Modal.Header>
-        <Modal.Body> Are you sure you wish to delete? </Modal.Body>
+        <Modal.Body className="center-text">
+          {" "}
+          Are you sure you wish to delete?{" "}
+        </Modal.Body>
+        <Modal.Body className="center-text">
+          - Feature will be modified later to hide instead of delete -
+        </Modal.Body>
         <Modal.Footer>
           <Button
             type="submit"

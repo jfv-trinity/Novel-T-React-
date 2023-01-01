@@ -3,7 +3,7 @@ import react, { useContext } from "react";
 import "./BookCreation.scss";
 import { previousPage } from "../../static/index";
 import { UserContext } from "../../static/UserContext";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import GenreButton from "../Container/Genre";

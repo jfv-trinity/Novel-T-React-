@@ -1,24 +1,23 @@
 import React, { FC, useEffect, useState } from "react";
-import BookProps from "../../common/Book";
+import { BookProps, ContainerProps } from "../../common/Book";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { BookDeletionModal } from "../Modal/BookDeletion";
 import { UpdateBookModal } from "../Modal/updateBook";
 import tempImage from "../../static/images/icon.png";
-import "../Views/Home.scss";
 
-const BookEntity: FC<BookProps> = ({
-  id,
-  bookTitle,
-  image,
-  MRchapter,
-  Rchapter,
-  summary,
-  authorId,
-  authorUsername,
-  authorPenName,
-  status,
-  user,
+const BookEntity: FC<ContainerProps> = ({
+  book,
+  // id,
+  // bookTitle,
+  // image,
+  // MRchapter,
+  // Rchapter,
+  // summary,
+  // authorId,
+  // authorUsername,
+  // authorPenName,
+  // status,
   ...props
 }) => {
   const [showDelete, setShowDelete] = useState(false);
@@ -26,27 +25,18 @@ const BookEntity: FC<BookProps> = ({
   const [authorization, setAuthorization] = useState(false);
   const navigate = useNavigate();
 
-  let book: BookProps = {
-    id,
-    bookTitle,
-    image,
-    summary,
-    status,
-    authorId,
-    authorUsername,
-    authorPenName,
-  };
-
-  useEffect(() => {
-    if (user?.id == authorId) {
-      setAuthorization(true);
-    }
-  }, [user?.id, authorId]);
-
   // const retrieveBook = (id: number) => {
   //   let path: string = `/Novel/${id}`;
   //   navigate(path, { state: { id: { id } } });
   // };
+
+  useEffect(() => {
+    if (book?.user?.id == book?.authorId) {
+      setAuthorization(true);
+    } else {
+      console.log(book?.user?.id, "/", book?.user?.id);
+    }
+  }, [book?.user?.id, book?.authorId]);
 
   function retrieveBook(id: number) {
     navigate(`/Novel/${id}`);
@@ -54,16 +44,17 @@ const BookEntity: FC<BookProps> = ({
 
   return (
     <React.Fragment>
-      <div className="novelContainer" onClick={() => retrieveBook(id!)}>
+      {/* <h1 className="centerDisplay">{props.containerHeader}</h1> */}
+      <div className="novelContainer" onClick={() => retrieveBook(book?.id!)}>
         <img src={tempImage} className="novelCover"></img>
         <div className="novelContext">
           <div className="novelTitle space">
-            <b>{bookTitle}</b>
+            <b>{book?.bookTitle}</b>
           </div>
           <div className="novelStats space">
-            <b>Author: {authorUsername}</b>
+            <b>Author: {book?.authorUsername}</b>
             <b>Chapters: {}</b>
-            <b>Status: {status}</b>
+            <b>Status: {book?.status}</b>
           </div>
           <div className="space">populate line with genres of novel</div>
           <div className="space">populate line novel's catcher</div>
@@ -81,13 +72,13 @@ const BookEntity: FC<BookProps> = ({
             </Button>
 
             <BookDeletionModal
-              id={id!}
+              id={book?.id!}
               show={showDelete}
               handleClose={() => setShowDelete(!showDelete)}
             />
 
             <UpdateBookModal
-              id={id!}
+              id={book?.id!}
               show={showEdit}
               handleClose={() => setshowEdit(!showEdit)}
             />

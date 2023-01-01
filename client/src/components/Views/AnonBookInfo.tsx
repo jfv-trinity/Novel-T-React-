@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./AnonBookInfo.scss";
 import { displayChapters, displayModal } from "../../static/index";
 import { useParams } from "react-router-dom";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
 
 function AnonBookInfo() {
   const [book, setBook] = React.useState<BookProps>();
@@ -51,7 +51,7 @@ function AnonBookInfo() {
     <React.Fragment>
       <hr />
       <br />
-      <div>
+      <div className="inline-flex">
         <img src="/static/emptybook.png" className="book-cover" />
         <div className="wrapper">
           <div className="details">

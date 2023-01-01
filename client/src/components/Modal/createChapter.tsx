@@ -3,23 +3,47 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import ChapterProps from "../../common/Chapters";
-import UserProps from "../../common/User";
-import { useNavigate } from "react-router-dom";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
+import { MdAddCircleOutline } from "react-icons/md";
+import SelectList from "../Form Inputs/SelectList";
+import "./createChapter.scss";
 
 export function CreateChapterModal(data: any) {
-  const [chapterTitle, setChapterTitle] = React.useState(String);
-  const [context, setContext] = React.useState(String);
   let bookId = data.book?.id;
   let chapterAuthor = data.user?.id;
   let newChapter: ChapterProps;
+  let updatedBook: BookProps;
+
+  let numberOfChapters: number = data.book?.numberOfChapters;
+  let options: Array<number> = [numberOfChapters];
+
+  const [chapterTitle, setChapterTitle] = React.useState(String);
+  const [context, setContext] = React.useState(String);
+  const [selectedOption, setSelectedOption] = React.useState(options.length);
+  const dateUpdated = new Date();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    setSelectedOption(parseInt(event.target.value));
+  }
+
   const submitForm = () => {
-    newChapter = { chapterTitle, context, bookId, chapterAuthor };
+    newChapter = {
+      chapterTitle,
+      context,
+      bookId,
+      chapterAuthor,
+      chapterNumber: selectedOption,
+    };
+
+    updatedBook = {
+      numberOfChapters: selectedOption,
+      dateUpdated,
+    };
+
     console.log("the new chapter is ", newChapter);
     fetch(`${process.env.REACT_APP_URL}chapters`, {
       method: "POST",
@@ -28,14 +52,20 @@ export function CreateChapterModal(data: any) {
       },
       body: JSON.stringify(newChapter),
     });
+
+    fetch(`${process.env.REACT_APP_URL}books/${data.book.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedBook),
+    });
     window.location.reload();
   };
 
   return (
     <React.Fragment>
-      <Button variant="primary" onClick={handleShow}>
-        +
-      </Button>
+      <MdAddCircleOutline className="lineBreak" onClick={handleShow} />
 
       <Modal
         show={show}
@@ -50,6 +80,12 @@ export function CreateChapterModal(data: any) {
           <Form onSubmit={submitForm}>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Chapter Title: </Form.Label>
+              <SelectList
+                className="float-right"
+                options={options}
+                selectedOption={selectedOption}
+                onChange={handleChange}
+              />
               <Form.Control
                 type="text"
                 placeholder={"Example: My book chapter 1"}

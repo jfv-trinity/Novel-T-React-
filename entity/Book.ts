@@ -38,6 +38,9 @@ export class Book {
   @Column({type: "integer", name: "author_id"})
   authorId: number;
 
+  @Column({type: "integer", name: "number_of_chapters",  nullable: true })
+  numberOfChapters: number;
+
   @Column("character varying", { name: "status"})
   status: string;
 

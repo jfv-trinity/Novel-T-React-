@@ -20,6 +20,9 @@ export class Bookchapters {
     length: 150,
   })
   chapterTitle: string | null;
+  
+  @Column("integer", { name: "chapter_number" })
+  chapterNumber: number;
 
   @Column("character varying", {
     name: "context",

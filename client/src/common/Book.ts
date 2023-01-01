@@ -1,8 +1,9 @@
 import UserProps from "./User";
 
-interface BookProps{
+export interface BookProps{
     id?: number;
     bookTitle?: string;
+    numberOfChapters?: number;
     image?: string;
     MRchapter?: string;
     Rchapter?: string;
@@ -20,4 +21,7 @@ interface BookProps{
     
 }
 
-export default BookProps;
+export interface ContainerProps{
+    book?: BookProps;
+    user?: UserProps;
+}

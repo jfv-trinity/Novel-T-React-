@@ -3,23 +3,50 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { previousPage } from "../../static/index";
 import { UserContext } from "../../static/UserContext";
 import ChapterProps from "../../common/Chapters";
+import { BookProps } from "../../common/Book";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import UserProps from "../../common/User";
+import SelectList from "../Form Inputs/SelectList";
+import "./createChapter.scss";
+
 //chapterEditorModal Rename function and file
 export function UpdateChapterModal(data: any) {
   const user = useContext(UserContext);
   let chapterAuthor = user?.id;
   let updatedChapter: ChapterProps;
+  let updatedBook: BookProps;
+
+  let numberOfChapters: number = data.book?.numberOfChapters;
+  let options: Array<number> = [];
+
+  for (let x = 0; x <= numberOfChapters; x++) {
+    options.push(x + 1);
+  }
 
   const [id, setId] = React.useState(Number);
   const [chapterTitle, setChapterTitle] = React.useState(String);
   const [context, setContext] = React.useState(String);
   const [bookId, setBookId] = React.useState(Number);
+  const [selectedOption, setSelectedOption] = React.useState(options.length);
+  const dateUpdated = new Date();
+
+  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    setSelectedOption(parseInt(event.target.value));
+  }
 
   const submitForm = () => {
-    updatedChapter = { id, chapterTitle, context, bookId, chapterAuthor };
+    updatedChapter = {
+      id,
+      chapterTitle,
+      context,
+      bookId,
+      chapterAuthor,
+      chapterNumber: selectedOption,
+    };
+    updatedBook = {
+      dateUpdated,
+    };
     fetch(`${process.env.REACT_APP_URL}chapter/${id}`, {
       method: "PUT",
       headers: {
@@ -27,7 +54,15 @@ export function UpdateChapterModal(data: any) {
       },
       body: JSON.stringify(updatedChapter),
     });
+    fetch(`${process.env.REACT_APP_URL}books/${data.book.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedBook),
+    });
     data.handleClose(data.show);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -39,7 +74,6 @@ export function UpdateChapterModal(data: any) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for the individual chapter query", data);
         if (data) {
           setChapterTitle(data.chapterTitle);
           setContext(data.context);
@@ -67,6 +101,12 @@ export function UpdateChapterModal(data: any) {
           <Form>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Chapter Title: </Form.Label>
+              <SelectList
+                className="float-right"
+                options={options}
+                selectedOption={selectedOption}
+                onChange={handleChange}
+              />
               <Form.Control
                 type="text"
                 value={chapterTitle}

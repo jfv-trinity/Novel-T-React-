@@ -62,7 +62,7 @@ function RegisterPage() {
                 console.log("data was reached", data);
                 localStorage.clear();
                 LoginUser(data);
-                navigate(`/MyLibrary`);
+                navigate(`/MyLibrary/${data.id}`);
               });
           }
         })

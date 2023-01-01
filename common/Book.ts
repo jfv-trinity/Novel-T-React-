@@ -3,11 +3,13 @@ import UserProps from "./User";
 interface BookProps{
     id?: number;
     bookTitle?: string;
+    numberOfChapters?: number;
     image?: string;
     MRchapter?: string;
     Rchapter?: string;
     authorId?: number;
     authorUsername?: string;
+    authorPenName?: string;
     summary?: string;
     publishDate?: Date;
     dateUpdated?: Date;
@@ -16,7 +18,6 @@ interface BookProps{
     rank?: number;
     rating?: number;
     user?: UserProps;
-    authorPenName?: string;
 }
 
 export default BookProps;

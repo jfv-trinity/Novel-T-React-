@@ -34,12 +34,15 @@ function AuthorListings() {
   return (
     <React.Fragment>
       <div className="container">
-        <h1>
-          {user?.username}&apos;s Listings
-          <CreateBookModal user={user} isLoggedIn={true} />
-          <hr />
-        </h1>
-        {books && <div>{displayPublishedBooks(books, user!)}</div>}
+        <h1>{user?.username}&apos;s Listings </h1>
+        <h2>
+          <span>
+            <CreateBookModal user={user} isLoggedIn={true} />
+          </span>
+        </h2>
+        <div className="container publishingContainer">
+          {books && <div>{displayPublishedBooks(books, user!)}</div>}
+        </div>
       </div>
     </React.Fragment>
   );

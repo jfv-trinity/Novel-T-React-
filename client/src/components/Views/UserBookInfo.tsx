@@ -2,17 +2,22 @@ import React, { useContext, useEffect } from "react";
 import "./UserBookInfo.scss";
 import { displayChapters, displayModal } from "../../static/index";
 import { useParams } from "react-router-dom";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
 import { UserContext } from "../../static/UserContext";
 import ChapterProps from "../../common/Chapters";
 import { CreateChapterModal } from "../Modal/createChapter";
 import UserProps from "../../common/User";
 import LibraryProps from "../../common/Library";
+import { RiBookMarkFill, RiBookLine } from "react-icons/ri";
+import background from "../../static/images/Book-Loading.jpg";
+import { Helmet } from "react-helmet";
 
 function UserBookInfo() {
   const user = useContext(UserContext);
   const params = useParams();
   const [book, setBook] = React.useState<BookProps>();
+
+  const [isBookMarked, setBookMark] = React.useState(false);
   const [chapters, setChapters] = React.useState<any[]>([]);
   const [authorId, setAuthorId] = React.useState(Number);
   const [chapterTitle, setChapterTitle] = React.useState(String);
@@ -30,7 +35,7 @@ function UserBookInfo() {
     userId: number
   ): void {
     let saveToLibrary = { bookTitle, bookId, userId };
-    fetch(`${process.env.REACT_APP_URL}libraries/${book.id}/${user.id}`, {
+    fetch(`${process.env.REACT_APP_URL}libraries/${user.id}/${book.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,36 +44,35 @@ function UserBookInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("response data: ", data);
+        setBookMark(!isBookMarked);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }
 
-  // const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   NewChapter = { chapterTitle, context, bookId, chapterAuthor };
-  //   console.log("this is the information for new chapter", NewChapter);
+  //fetching to check bookmarked status
+  useEffect(() => {
+    if (user?.id && book?.id) {
+      fetch(`${process.env.REACT_APP_URL}libraries/${user?.id}/${book?.id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) {
+            setBookMark(true);
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  }, [user?.id, book?.id]);
 
-  //   fetch(`${process.env.REACT_APP_URL}chapters`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(NewChapter),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("this is the data", data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-
-  //   console.log("post method was successful");
-  // };
-
+  //fetching book details using url variable
   useEffect(() => {
     fetch(`${process.env.REACT_APP_URL}books/${params.id}`, {
       method: "GET",
@@ -78,7 +82,6 @@ function UserBookInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for books", data);
         if (data) {
           setBook(data);
           setBookId(data.id);
@@ -88,9 +91,8 @@ function UserBookInfo() {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);
 
-  useEffect(() => {
+    //fetching chapters of book using url variable
     fetch(`${process.env.REACT_APP_URL}chapters/${params.id}`, {
       method: "GET",
       headers: {
@@ -100,6 +102,7 @@ function UserBookInfo() {
       .then((response) => response.json())
       .then((data) => {
         console.log("this is the data for chapters", data);
+
         if (data) {
           setChapters(data);
         }
@@ -111,61 +114,71 @@ function UserBookInfo() {
 
   return (
     <React.Fragment>
-      <button
-        className={``}
-        onClick={() =>
-          bookMark(book!, user!, book?.bookTitle!, book?.id!, user?.id!)
-        }
-      >
-        Bookmark
-      </button>
-      <hr />
-      <br />
-      <div>
-        <img src="/static/emptybook.png" className="book-cover" />
-        <div className="wrapper">
-          <div className="details">
-            <div className="row">
-              <div className="book-attribute">title(s):</div>
-              <div className="attribute-context">{book?.bookTitle}</div>
+      <Helmet>
+        <style>{`body {background-image: ${`url(${background}); overflow: auto;`} `}</style>
+      </Helmet>
+      {isBookMarked == true ? (
+        <RiBookMarkFill
+          onClick={() =>
+            bookMark(book!, user!, book?.bookTitle!, book?.id!, user?.id!)
+          }
+        />
+      ) : (
+        <RiBookLine
+          onClick={() =>
+            bookMark(book!, user!, book?.bookTitle!, book?.id!, user?.id!)
+          }
+        />
+      )}
+      <div className="title">
+        <h1>{book?.bookTitle}</h1>
+      </div>
+      <div className="panel">
+        <div className="details">
+          <div className="book-attributes">
+            <div className="attribute-row">
+              <div className="book-attribute">Status </div>
+              <div className="attribute-context">{book?.status}</div>
             </div>
-            <div className="row">
-              <div className="book-attribute">Genre(s): </div>
-              {/* <div className="attribute-context">{book.genres}</div> */}
-            </div>
-            <div className="row">
+            <div className="attribute-row">
               <div className="book-attribute">Author: </div>
               <div className="attribute-context">{book?.authorUsername}</div>
             </div>
-            <div className="row">
-              <div className="book-attribute">rank: </div>
-              <div className="attribute-context">N/A</div>
+            <div className="attribute-row">
+              <div className="book-attribute">Genre(s): </div>
+              {/* <div className="attribute-context">{book.genres}</div> */}
             </div>
-            <div className="row">
-              <div className="book-attribute">rating: </div>
-              <div className="attribute-context">N/A</div>
+            <div className="ratings">
+              <div className="attribute-row">
+                <div className="book-attribute">rank: </div>
+                <div className="attribute-context">N/A</div>
+              </div>
+              <div className="attribute-row">
+                <div className="book-attribute">rating: </div>
+                <div className="attribute-context">N/A</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <br />
-      <br />
-      <div>
-        <h3> Book Summary </h3>
-        <hr />
-        <p style={{ textAlign: "center" }}>{book?.summary}</p>
-      </div>
-      <br />
-      <br />
-      <div>
-        <h3>
-          Book Chapters{" "}
-          {user?.id == authorId ? (
-            <CreateChapterModal user={user} isLoggedIn={true} book={book} />
-          ) : null}
+        <div className="novel-summary">
+          <h3> Novel Summary </h3>
           <hr />
-          {chapters && <div>{displayChapters(chapters, user!)}</div>}
-        </h3>
+          <p style={{ textAlign: "center" }}>{book?.summary}</p>
+        </div>
+        <div className="novel-chapters">
+          <h3>
+            Book Chapters{" "}
+            {user?.id == authorId ? (
+              <CreateChapterModal user={user} isLoggedIn={true} book={book} />
+            ) : null}
+            <hr />
+            {chapters && book && (
+              <div className="chapter-list">
+                {displayChapters(chapters, user!, book)}
+              </div>
+            )}
+          </h3>
+        </div>
       </div>
     </React.Fragment>
   );

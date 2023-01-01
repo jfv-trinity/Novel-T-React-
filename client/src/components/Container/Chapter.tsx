@@ -1,16 +1,17 @@
 import React, { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ChapterProps from "../../common/Chapters";
-import { Button as MyButton } from "../Buttons/Button";
 import { UpdateChapterModal } from "../Modal/updateChapter";
-import Button from "react-bootstrap/Button";
 import { ChapterDeletionModal } from "../Modal/ChapterDeletion";
+import { MdDeleteForever, MdModeEdit } from "react-icons/md";
+import ChapterProps from "../../common/Chapters";
+
 const ChapterEntity: FC<ChapterProps> = ({
   chapterTitle,
   context,
   bookId,
   id,
   chapterAuthor,
+  chapterNumber,
   book,
   user,
   ...props
@@ -34,29 +35,30 @@ const ChapterEntity: FC<ChapterProps> = ({
 
   return (
     <React.Fragment>
-      <div>
-        {/* <button
-          type="button"
-          className="chapter-link"
-          onClick={() => retrieveChapter(id!)}
-        >
-          {chapterTitle}
-        </button> */}
+      <p className="chapter-link" onClick={() => retrieveChapter(id!)}>
+        {chapterTitle}
+      </p>
+      <div className="chapter-options">
         {authorization ? (
           <React.Fragment>
-            <Button variant="primary" onClick={() => setshowEdit(!showEdit)}>
-              Edit
-            </Button>
+            <MdModeEdit
+              onClick={() => setshowEdit(!showEdit)}
+              size="5em"
+              color="red"
+            />
 
             <UpdateChapterModal
               id={id!}
               show={showEdit}
               handleClose={() => setshowEdit(!showEdit)}
+              book={book}
             />
 
-            <Button variant="danger" onClick={() => setShowDelete(!showDelete)}>
-              Delete
-            </Button>
+            <MdDeleteForever
+              onClick={() => setShowDelete(!showDelete)}
+              size="5em"
+              color="red"
+            />
 
             <ChapterDeletionModal
               id={id!}

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
+import { MdAddCircleOutline } from "react-icons/md";
+import "../../components/Views/AuthorListings.scss";
 
 export function CreateBookModal(data: any) {
   const [bookTitle, setBookTitle] = React.useState(String);
@@ -44,10 +46,7 @@ export function CreateBookModal(data: any) {
 
   return (
     <React.Fragment>
-      <Button variant="primary" onClick={handleShow}>
-        +
-      </Button>
-
+      <MdAddCircleOutline className="lineBreak" onClick={handleShow} />
       <Modal
         show={show}
         onHide={() => setShow(false)}

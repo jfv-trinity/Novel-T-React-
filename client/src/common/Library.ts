@@ -1,4 +1,4 @@
-import BookProps from "./Book";
+import {BookProps} from "./Book";
 import UserProps from "./User";
 
 interface LibraryProps{

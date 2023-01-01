@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
     "@react-pdf-viewer/core": "^3.7.0",
@@ -24,6 +25,7 @@
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
+    "react-icons": "^4.6.0",
     "react-notification-component": "^1.1.4",
     "react-notifications-component": "^4.0.1",
     "react-pdf": "^5.7.2",

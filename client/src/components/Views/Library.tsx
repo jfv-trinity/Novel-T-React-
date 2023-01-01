@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
 import UserProps from "../../common/User";
 import { displayBooks, displayLibraryBooks } from "../../static";
 import { UserContext } from "../../static/UserContext";
@@ -15,30 +15,6 @@ function Library() {
   const params = useParams();
   const [books, setBooks] = React.useState<any[]>([]);
   console.log("library user", user);
-
-  // function bookMark(
-  //   book: BookProps,
-  //   user: UserProps,
-  //   bookTitle: string,
-  //   bookId: number,
-  //   userId: number
-  // ): void {
-  //   let saveToLibrary = { bookTitle, bookId, userId };
-  //   fetch(`${process.env.REACT_APP_URL}libraries/${book.id}/${user.id}`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(saveToLibrary),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("response data: ", data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_URL}libraries/${params.id}`, {
@@ -63,9 +39,14 @@ function Library() {
       <Helmet>
         <style>{`body { background-image: ${`url(${background});`} `}</style>
       </Helmet>
-      <div className="container collection">
+      <div className="collection-component">
         <h1>{user.username}'s Collection</h1>
-        <div>{books ? displayLibraryBooks(books, user!) : null}</div>
+        <h2 className="style-seven">
+          <span></span>
+        </h2>
+        <div className="grid">
+          {books ? displayLibraryBooks(books, user!) : null}
+        </div>
       </div>
     </React.Fragment>
   );

@@ -1,102 +1,167 @@
-.listingsContainer{
-        top: 15%;
-        position: absolute;
-        bottom: 3%;
-        left: 50px;
-        overflow: auto;
-        /* background: black; */
-        right: 50px;
+
+
+.islandHeader {
+    margin-top: 25px;
+    background: black;
+    color: lightgoldenrodyellow;
+    width: 616px;
+    display: inline-block;
+    height: 63px;
+
+    .h1 {
+        margin-top: 5px;
+    }
+}
+
+.listingsContainer {
+    top: 10%;
+    position: absolute;
+    bottom: 3%;
+    left: 50px;
+    overflow: auto;
+    right: 50px;
+    height: 88%;
 }
 
 .listingsContainer::-webkit-scrollbar {
-        display: none;
+    display: none;
 }
 
-.context{
-// background: white;
-// height: 1000px;
-// display: inline-block;
+.context {
+    // background: white;
+    // height: 1000px;
+    // display: inline-block;
 }
-    
 
-    .island{
-        height: 1000px;
-        display: inline-block;
+// .island {
+//     height: 100%;
+//     display: inline-block;
+// }
+
+.centerDisplay {
+    margin-top: 30px;
+    color: lightgoldenrodyellow;
+    background-color: black;
+    height: 100px;
+}
+
+.novelContainer {
+
+    background: black;
+    color: lightgoldenrodyellow;
+    border: 10px black solid;
+    display: flex;
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.novelContainer:hover {
+    border: aliceblue 5px solid;
+}
+
+.space {
+    margin-bottom: 5px;
+}
+
+.novelCover {
+    max-width: inherit;
+    width: 25%;
+    height: 220px;
+    // float:left;
+    // height:142px;
+    // width: 100px;
+
+}
+
+.novelContext {
+    margin-left: 5%;
+    margin-top: 2%;
+    text-align: left;
+    // margin-left: 125px;
+    // padding-bottom: 15px;
+    // position: relative;
+    // top: -6px;
+    // min-height: 180px;
+}
+
+.novelRatings {
+    // text-align: center;
+    // margin-top: -8px;
+}
+
+.novelRatingImage {
+    // font-size: 12px;
+    // color: #d70000
+}
+
+.novelOptions{
+    display: grid;
+    margin-top: -219px;
+    float: right;
+    margin-right: 20px;
+}
+
+.novelTitle {
+    // font-size: 16px;
+    // font-weight: 700;
+    // color: #1b98e0;
+}
+
+.novelStats {
+    // margin-top: 10px;
+    // padding-bottom: 2px;
+    // font-size: 13.5px;
+}
+
+.novelSpan {
+    // display: inline;
+}
+
+@media only screen and (max-width: 740px) {
+    body {
+      display: inline-block;
+      width: 100%;
     }
 
-    .centerDisplay{
-        margin-top: 30px;
-        color: lightgoldenrodyellow;
-        background-color: black;
-        height: 100px;
+    .context{
+        display: contents;
     }
 
-    .novelContainer {
-    
-        background: black;
-                color: lightgoldenrodyellow;
-                border: 10px black solid;
-                display: flex;
-                max-width: 100%;
-                max-height: 300px;
+    .islandHeader {
+        margin: auto;
+        width: 100%;
     }
 
- 
-
-    .novelContainer:hover{
-        border: aliceblue 5px solid;
+    .island {
+        height: 100%;
     }
 
-    .space{
-        margin-bottom: 5px;
+    .listingsContainer{
+      
+        top: unset !important; 
+        bottom: unset !important;
+        left: unset !important;
+        right: unset  !important;
+        padding-left: unset !important;
+        padding-right: unset !important;
+        width: 100% !important;
+        position: absolute !important;
+        overflow: auto !important;
+          
+        // margin-left: -51px;
+        // top: 16% !important;
+        // left: 39px !important;
+        // box-sizing: content-box !important;
     }
 
     .novelCover{
-        max-width: inherit;
-        width: 25%;
-        height: 220px;
-            // float:left;
-            // height:142px;
-            // width: 100px;
-            
-    }
-    
-    .novelContext {
-        margin-left: 5%;
-        margin-top: 2%;
-        text-align: left;
-            // margin-left: 125px;
-            // padding-bottom: 15px;
-            // position: relative;
-            // top: -6px;
-            // min-height: 180px;
+       
     }
 
-    .novelRatings{
-            // text-align: center;
-            // margin-top: -8px;
+    .novelOptions{
+        display: inherit;
+        margin-top: unset;
+        margin-right: unset;
+        float: unset;
     }
-
-    .novelRatingImage{
-            // font-size: 12px;
-            // color: #d70000
-    }
-
-   
-
-    .novelTitle{
-            // font-size: 16px;
-            // font-weight: 700;
-            // color: #1b98e0;
-    }
-
-    .novelStats {
-        // margin-top: 10px;
-            // padding-bottom: 2px;
-            // font-size: 13.5px;
-    }
-
-    .novelSpan{
-            // display: inline;
-    }
-    
+}

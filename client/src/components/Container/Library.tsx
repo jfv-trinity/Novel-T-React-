@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
-import BookProps from "../../common/Book";
+import { BookProps } from "../../common/Book";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { BookDeletionModal } from "../Modal/BookDeletion";
 import { UpdateBookModal } from "../Modal/updateBook";
 import LibraryProps from "../../common/Library";
 import UserProps from "../../common/User";
+// temp image is later replaced by the book.image variable
+import tempimage from "../../static/images/Book-Loading.jpg";
 
 const LibraryEntity: FC<LibraryProps> = ({
   id,
@@ -44,17 +46,17 @@ const LibraryEntity: FC<LibraryProps> = ({
 
   return (
     <React.Fragment>
-      <div onClick={() => retrieveBook(bookId!)}>
-        <img src={image} height="50" width="50" className="book-cover"></img>
-        <b>{bookTitle}</b>
-      </div>
-      <div>
-        <button
-          className={``}
-          onClick={() => bookMark(bookTitle!, bookId!, user?.id!)}
-        >
-          Bookmark
-        </button>
+      <div
+        className="library-novel-object"
+        onClick={() => retrieveBook(bookId!)}
+      >
+        <img
+          src={tempimage}
+          height="50"
+          width="50"
+          className="book-cover"
+        ></img>
+        <b className="cover-title">{bookTitle}</b>
       </div>
     </React.Fragment>
   );

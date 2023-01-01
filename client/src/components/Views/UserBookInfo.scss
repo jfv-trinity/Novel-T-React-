@@ -1,3 +1,129 @@
-.centered {
-    text-align: center;
+// .info-box{
+//     width: 35%;
+//     background: white;
+//     height: 20%;
+//     display: inline-flex;
+//     padding-top: 50px;
+//     margin-top: 650px;
+// }
+
+
+
+ .title {
+        text-align: center;
+        color: white;
+        margin-top: 9.5%;
+ }
+
+.panel {
+
+            overflow: auto;
+            border: 1px solid black;
+            opacity: 0.6;
+            width: 55%;
+            display: inline-grid;
+            justify-content: center;
+            height: 70vh;
+            background-color: #1a1c1c;
+            opacity: 0.90;
+            color: white;
+
+
+    .details {
+
+        margin-top: 20px;
+
+            .p {
+                margin: 5%;
+                font-weight: bold;
+                color: #000000;
+            }
+
+            .book-attributes{
+
+                .attribute-row {
+
+                        .book-attribute {
+                        
+                                display: inline;
+                        
+                            }
+                            
+                        .attribute-context{
+
+                            display: inline;
+                            margin-left: 20px;
+
+                        }
+                
+                    }
+
+            }
+           
+    }
+
+    .novel-summary {
+
+            margin-top: 20px;
+
+    }
+
+    .novel-chapters {
+
+        .lineBreak{
+            position: unset !important;
+        }
+
+    }
+
+    .chapter-list{
+
+        display: inline-grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 30px;
+
+        .chapter-entity {
+
+                width: 360px;
+                height: 128px;
+                background-color: #ffffff;
+               
+        
+                .chapter-link {
+
+                    display: inline-block;
+                    color: black;
+                    font-size: 0.65em;
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 90%;
+                    white-space: nowrap;
+                    overflow: hidden;
+
+            }
+        
+                .chapter-options {
+
+                    display: flex;
+                    justify-content: space-between;
+                     margin-top: 13%;
+        
+                    svg {
+                            background: black;
+                            color: white;
+                            height: 40px;
+                            width: 55px;
+                    }
+                }
+        
+        
+            }
+
+    }
+ 
+
+    
 }
+
+ 

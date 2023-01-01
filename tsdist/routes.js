@@ -164,13 +164,13 @@ export var Routes = [{
     },
     {
         method: "get",
-        route: "/libraries/:userid/:bookId",
+        route: "/libraries/:userId/:bookId",
         controller: LibraryController,
         action: "findBookByUser",
     },
     {
         method: "post",
-        route: "/libraries/:bookId/:userId",
+        route: "/libraries/:userId/:bookId",
         controller: LibraryController,
         action: "bookmark",
     },

@@ -35,13 +35,13 @@ function HomePage() {
   return (
     <React.Fragment>
       <Helmet>
-        <style>{`body { height: 100%; background-image: ${`url(${background});`} `}</style>
+        <style>{`body {background-image: ${`url(${background});  `} `}</style>
       </Helmet>
-      <div className="container island">
-        <h1 className="centerDisplay">Recently Listed</h1>
-        <div className="container listingsContainer">
-          <div>{displayBooks(books)}</div>
-        </div>
+      <div className="islandHeader">
+        <h1>Recently Listed</h1>
+      </div>
+      <div className="container listingsContainer">
+        <div>{displayBooks(books)}</div>
       </div>
     </React.Fragment>
   );

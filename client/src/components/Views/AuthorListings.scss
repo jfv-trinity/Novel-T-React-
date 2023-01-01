@@ -1,3 +1,192 @@
-.centered {
-    text-align: center;
+@media only screen and (max-width: 740px) {
+    body {
+        display: inline-block;
+        width: 100%;
+        background-image: none;
+    }
+
+    .context {
+        display: contents;
+    }
+
+    .islandHeader {
+        margin: auto;
+        width: 100%;
+    }
+
+    .publishingContainer {
+        background: black;
+        top: 16% !important;
+        height: 100%;
+    }
+
+    .novelCover {
+        max-width: inherit;
+        width: 25%;
+        height: 143px;
+    }
+
+    .novelOptions {
+        display: inherit;
+        margin-top: unset;
+        margin-right: unset;
+        float: unset;
+    }
 }
+
+.publishingContainer {
+    top: 10%;
+    position: absolute;
+    bottom: 3%;
+    overflow: auto;
+    margin-left: -12px;
+}
+
+.publishingContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.centerDisplay {
+    margin-top: 30px;
+    color: lightgoldenrodyellow;
+    background-color: black;
+    height: 100px;
+}
+
+.novelContainer {
+
+    background: black;
+    color: lightgoldenrodyellow;
+    border: 10px black solid;
+    display: flex;
+    max-width: 100%;
+    max-height: 300px;
+}
+
+
+
+.novelContainer:hover {
+    border: aliceblue 5px solid;
+}
+
+.space {
+    margin-bottom: 5px;
+}
+
+// .novelCover {
+//     max-width: inherit;
+//     width: 25%;
+//     height: 220px;
+//     // float:left;
+//     // height:142px;
+//     // width: 100px;
+
+// }
+
+.novelContext {
+    margin-left: 5%;
+    margin-top: 2%;
+    text-align: left;
+    // margin-left: 125px;
+    // padding-bottom: 15px;
+    // position: relative;
+    // top: -6px;
+    // min-height: 180px;
+}
+
+.novelRatings {
+    // text-align: center;
+    // margin-top: -8px;
+}
+
+.novelRatingImage {
+    // font-size: 12px;
+    // color: #d70000
+}
+
+
+
+.novelTitle {
+    // font-size: 16px;
+    // font-weight: 700;
+    // color: #1b98e0;
+}
+
+.novelStats {
+    // margin-top: 10px;
+    // padding-bottom: 2px;
+    // font-size: 13.5px;
+}
+
+.novelSpan {
+    // display: inline;
+}
+
+.lineBreak{
+    top: -11px;
+    position: relative;
+}
+
+.container h2 {
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+
+    span {
+            background: #fff;
+            padding: 0px 15px 5px 15px;
+        }
+}
+
+/* Flaired edges, by Tomas Theunissen */
+
+/* Flaired edges, by Tomas Theunissen */
+
+hr.style-seven {
+    overflow: visible;
+    /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+hr.style-seven:before {
+    /* Not really supposed to work, but does */
+    display: block;
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+
+.container h2 {
+    overflow: visible;
+    /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+    
+    span {
+            background: #fff;
+            padding: 0px 15px 5px 15px;
+        }
+}
+
+.container h2:before {
+    /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+

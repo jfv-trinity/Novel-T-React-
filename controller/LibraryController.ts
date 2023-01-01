@@ -31,20 +31,20 @@ export class LibraryController {
     }
 
     async findBookByUser(request: Request, response: Response, next: NextFunction) {
-        return this.libraryRepository.find({ where: { userId: parseInt(request.params.id), bookId: parseInt(request.params.bookId) } })
+        return this.libraryRepository.find({ where: { userId: parseInt(request.params.userId), bookId: parseInt(request.params.bookId) } })
     }
 
     async bookmark(request: Request, response: Response, next: NextFunction) {
 
         const existingBookMark = await this.libraryRepository.findOneBy({ userId: parseInt(request.params.userId), bookId: parseInt(request.params.bookId )})
         console.log(existingBookMark);
-
+0
         if (existingBookMark == null) {
-            console.log("It does not exist")
+            console.log("It does not exist, will save it now")
             return this.libraryRepository.save(request.body)
         }
         else {
-            console.log("It exists")
+            console.log("It exists, deleting now")
             await this.libraryRepository.remove(existingBookMark)
         }
         return existingBookMark;
