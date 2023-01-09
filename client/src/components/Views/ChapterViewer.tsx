@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { BookProps } from "../../common/Book";
 import ChapterProps from "../../common/Chapters";
 import background from "../../static/images/Book-Loading.jpg";
-import {
-  retrieveNextChapter,
-  retrievePreviousChapter,
-} from "../../static/index";
+
+// import {
+//   retrieveNextChapter,
+//   retrievePreviousChapter,
+// } from "../../static/index";
 
 function ChapterView() {
   const [book, setBook] = React.useState<BookProps>();
   const [chapter, setChapter] = React.useState<ChapterProps>();
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_URL}chapter/${params.id}`, {
@@ -64,14 +66,26 @@ function ChapterView() {
       <div className="panel">
         <div className="details">{chapter?.context}</div>
       </div>
-      {/* {chapter ? (
+      {chapter ? (
         <div>
-          <button onClick={() => retrievePreviousChapter(chapter.id!)}>
+          <button
+            onClick={() => {
+              navigate(`/Chapter/${chapter.chapterNumber!}`);
+              window.location.reload();
+            }}
+          >
             Previous
           </button>
-          <button onClick={() => retrieveNextChapter(chapter.id!)}>Next</button>
+          <button
+            onClick={() => {
+              navigate(`/Chapter/${chapter.chapterNumber! + 1}`);
+              window.location.reload();
+            }}
+          >
+            Next
+          </button>
         </div>
-      ) : null} */}
+      ) : null}
     </React.Fragment>
   );
 

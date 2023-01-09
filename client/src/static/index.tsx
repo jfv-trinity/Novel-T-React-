@@ -217,19 +217,19 @@ export function displayModal(element: HTMLElement | null) {
 //   window.location.href = "view-chapter?chapter=" + chapterId;
 // }
 
-export function retrieveNextChapter(
-  chapterId: number,
-  navigates: NavigateFunction
-) {
-  navigates(`/Chapter/${chapterId}`);
-}
+// export function retrieveNextChapter(
+//   chapterId: number,
+//   navigates: NavigateFunction
+// ) {
 
-export function retrievePreviousChapter(
-  chapterId: number,
-  navigates: NavigateFunction
-) {
-  navigates(`/Chapter/${chapterId}`);
-}
+// }
+
+// export function retrievePreviousChapter(
+//   chapterId: number,
+//   navigates: NavigateFunction
+// ) {
+//   navigates(`/Chapter/${chapterId}`);
+// }
 
 // export function editBook(bookId: number) {
 //   window.location.href = "edit-book?bookId=" + bookId;
