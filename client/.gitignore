@@ -9,7 +9,6 @@
 /coverage
 
 # production
-tsconfig.json
   /public
   /src
 /.env.production

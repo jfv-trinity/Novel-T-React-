@@ -5,11 +5,6 @@ import { BookProps } from "../../common/Book";
 import ChapterProps from "../../common/Chapters";
 import background from "../../static/images/Book-Loading.jpg";
 
-// import {
-//   retrieveNextChapter,
-//   retrievePreviousChapter,
-// } from "../../static/index";
-
 function ChapterView() {
   const [book, setBook] = React.useState<BookProps>();
   const [chapter, setChapter] = React.useState<ChapterProps>();
@@ -25,7 +20,6 @@ function ChapterView() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for chapter in chapter view", data);
         if (data) {
           setChapter(data);
         }
@@ -45,7 +39,6 @@ function ChapterView() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("this is the data for book in chapter view", data);
           if (data) {
             setBook(data);
           }
@@ -86,30 +79,6 @@ function ChapterView() {
           </button>
         </div>
       ) : null}
-    </React.Fragment>
-  );
-
-  //
-
-  return (
-    <React.Fragment>
-      <div className="centered">
-        <h2>
-          home / {book?.bookTitle} / {chapter?.chapterTitle}
-        </h2>
-        <hr />
-        <div>
-          <p>{chapter?.chapterTitle}</p>
-          <hr />
-          <p>{chapter?.context}</p>
-        </div>
-        {/* <button onClick={() => retrievePreviousChapter( chapter.id)}>
-          Previous 
-        </button>
-      <button onClick={() => retrieveNextChapter({ chapter.id}!)}>
-          Next 
-        </button> */}
-      </div>
     </React.Fragment>
   );
 }
