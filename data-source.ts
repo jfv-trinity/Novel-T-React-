@@ -13,7 +13,7 @@ if (process.env.NODE_ENV == "production") {
         type: "postgres",
         host: "ec2-3-219-229-143.compute-1.amazonaws.com",
         database: "d4ef6fs50ujdt9",
-        username: "zmymtehxdwbehj",
+        username: "fgizpiylzzofhx",
         port: 5432,
         password: "2fc1a5a2c894548e34190f154bf992013077ee5806d1ae83595266ff6736a21c",
         synchronize: true,
