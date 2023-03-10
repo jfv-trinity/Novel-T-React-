@@ -11,11 +11,11 @@ console.log("this is the process env", process.env.NODE_ENV);
 if (process.env.NODE_ENV == "production") {
     AppDataSource = new DataSource({
         type: "postgres",
-        host: "ec2-3-219-229-143.compute-1.amazonaws.com",
-        database: "d4ef6fs50ujdt9",
+        host: "ec2-54-147-33-38.compute-1.amazonaws.com",
+        database: "ddd46bg6ebcm1v",
         username: "fgizpiylzzofhx",
         port: 5432,
-        password: "2fc1a5a2c894548e34190f154bf992013077ee5806d1ae83595266ff6736a21c",
+        password: "63245a5e017e0a6d151dd3313f857d0319a0e05d5146be11b939d6154e56d4a0",
         synchronize: true,
         logging: false,
         entities: [User, Book, Library, Bookgenres, Bookchapters],
