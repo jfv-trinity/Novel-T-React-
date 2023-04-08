@@ -4,6 +4,7 @@ import { User } from "./entity/User"
 import { Library } from "./entity/Library"
 import { Bookgenres } from "./entity/Bookgenres"
 import { Bookchapters } from "./entity/Bookchapters"
+import process, { env } from "process"
 
 export let AppDataSource:DataSource;
 

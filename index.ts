@@ -11,16 +11,16 @@ import * as http from "http"
     res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status })
 }
 
-setInterval(function () {
+// setInterval(function () {
   
-http.get("http://desolate-sands-65605.herokuapp.com", (res) => {
-    res.setEncoding('utf8');
-    res.on('data', function (body) {
-        // console.log("GET CAME BACK", body);
-    });
-}); 
+// http.get("http://desolate-sands-65605.herokuapp.com", (res) => {
+//     res.setEncoding('utf8');
+//     res.on('data', function (body) {
+//         // console.log("GET CAME BACK", body);
+//     });
+// }); 
   
-}, 300000); // every 5 minutes (300000)
+// }, 300000); // every 5 minutes (300000)
 
 AppDataSource.initialize().then(async () => {
 
@@ -64,7 +64,7 @@ AppDataSource.initialize().then(async () => {
   const port = process.env.PORT || 8000;
 
   app.listen(port, () => {
-    setInterval(function () { http.get("http://desolate-sands-65605.herokuapp.com"); }, 300000); // every 5 minutes (300000)
+    // setInterval(function () { http.get("http://desolate-sands-65605.herokuapp.com"); }, 300000); // every 5 minutes (300000)
     console.log(`Express server has started on port ${port}.`)
     http.get("http://desolate-sands-65605.herokuapp.com", (res) => {
     res.setEncoding('utf8');
