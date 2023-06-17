@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import react, { useContext } from "react";
 import "./BookCreation.scss";
 import { previousPage } from "../../static/index";
@@ -52,8 +52,7 @@ function BookCreation() {
   let status = "Ongoing";
   let newBook: BookProps;
 
-  const submitForm = (e: any) => {
-    e.preventDefault();
+  const submitForm = useCallback(() => {
     newBook = {
       bookTitle,
       image,
@@ -95,8 +94,8 @@ function BookCreation() {
       })
       .catch((error) => {
         console.error("Error:", error);
-      }),[dik, bookTitle]
-  };
+      })}
+      ,[dik, bookTitle]);
 
   return (
     <React.Fragment>
