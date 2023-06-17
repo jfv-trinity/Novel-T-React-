@@ -19,6 +19,7 @@ function Login() {
     HandleNotification,
     MyNotification,
   } = React.useContext(NotificationContext)!;
+  
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -35,21 +36,19 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data was reached", data);
+        console.log("login data was reached", data);
         if (data.password === loginPassword) {
-          console.log("data: ", data);
           LoginUser(data);
           navigate(`/MyLibrary/${data.id}`);
-        } else {
-          HandleNotification(
-            MyNotification(
-              GetErrorMessage(Errors.login),
-              GetAvatarImage(Avatars.elf)
-            )
-          );
-        }
+        } 
       })
       .catch((error) => {
+        HandleNotification(
+          MyNotification(
+            GetErrorMessage(Errors.login),
+            GetAvatarImage(Avatars.elf)
+          )
+        );
         console.error("Error:", error);
       });
   };
