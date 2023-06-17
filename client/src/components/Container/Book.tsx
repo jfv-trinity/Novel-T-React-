@@ -25,11 +25,6 @@ const BookEntity: FC<ContainerProps> = ({
   const [authorization, setAuthorization] = useState(false);
   const navigate = useNavigate();
 
-  // const retrieveBook = (id: number) => {
-  //   let path: string = `/Novel/${id}`;
-  //   navigate(path, { state: { id: { id } } });
-  // };
-
   useEffect(() => {
     if (book?.user?.id == book?.authorId) {
       setAuthorization(true);
@@ -57,7 +52,9 @@ const BookEntity: FC<ContainerProps> = ({
             <b>Status: {book?.status}</b>
           </div>
           <div className="space">populate line with genres of novel</div>
-          <div className="space">populate line novel's catcher</div>
+          <div className="space"> {book?.summary} </div>
+
+          <div className="space">  Read More  </div>
         </div>
       </div>
       <div>
