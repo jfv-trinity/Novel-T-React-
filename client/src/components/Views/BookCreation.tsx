@@ -10,81 +10,42 @@ import GenreButton from "../Container/Genre";
 import GenreProps from "../../common/Genres";
 
 function BookCreation() {
-  const user = useContext(UserContext);
-  const formCheckBoxes = [
-    "Sci-fi",
-    "Fantasy",
-    "Romance",
-    "Action & Adventure",
-    "Slice of life",
-    "Comedy",
-    "Tragedy",
-    "Mystery",
-    "Thriller",
-    "Horror",
-    "Isekai",
-    "Reincarnation",
-    "Transmigration",
-    "Historical",
-    "Military",
-    "School",
-    "Spy",
-    "Martial arts",
-  ];
-
   const navigate = useNavigate();
+  const user = useContext(UserContext);
 
-  enum GENRES {
-    sci_fi,
-  }
-
-  const [genres, setGenres] = useState<[]>([]);
   const [bookTitle, setBookTitle] = useState(String);
   const [summary, setSummary] = useState(String);
   const [image, setImage] = useState(String);
-
   const [bookId, setBookId] = useState(Number);
-  const [sci_fi, setSci_fi] = useState(Boolean);
-  const [fantasy, setFantasy] = useState(Boolean);
-  const [romance, setRomance] = useState(Boolean);
-  const [action_adventure, setAction_adventure] = useState(Boolean);
-  const [slice_of_life, setSlice_of_life] = useState(Boolean);
-  const [comedy, setComedy] = useState(Boolean);
-  const [tragedy, setTragedy] = useState(Boolean);
-  const [mystery, setMystery] = useState(Boolean);
-  const [thriller, setThriller] = useState(Boolean);
-  const [horror, setHorror] = useState(Boolean);
-  const [isekai, setIsekai] = useState(Boolean);
-  const [reincarnation, setReincarnation] = useState(Boolean);
-  const [transmigration, setTransmigration] = useState(Boolean);
-  const [historical, setHistorical] = useState(Boolean);
-  const [military, setMilitary] = useState(Boolean);
-  const [school, setSchool] = useState(Boolean);
-  const [spy, setSpy] = useState(Boolean);
-  const [martial_arts, setMartial_arts] = useState(Boolean);
 
-  // var = add toggle to the button;
-
-  let formCheckBoxMethods = [
-    setSci_fi,
-    setFantasy,
-    setRomance,
-    setAction_adventure,
-    setSlice_of_life,
-    setComedy,
-    setTragedy,
-    setMystery,
-    setThriller,
-    setHorror,
-    setIsekai,
-    setReincarnation,
-    setTransmigration,
-    setHistorical,
-    setMilitary,
-    setSchool,
-    setSpy,
-    setMartial_arts,
+  const genreTypes:string[] = [
+    "sciFi",
+    "fantasy",
+    "romance",
+    "actionAdventure",
+    "sliceOfLife",
+    "comedy",
+    "tragedy",
+    "mystery",
+    "thriller",
+    "horror",
+    "isekai",
+    "reincarnation",
+    "transmigration",
+    "historical",
+    "military",
+    "school",
+    "spy",
+    "martialArts",
   ];
+
+  const genreButtonValues:Record<string, boolean> = {}
+
+  genreTypes.forEach((key, index)=> {
+    genreButtonValues[key] = false;
+  })
+ 
+  const [dik, setDik] = useState<Record<string, boolean>>(genreButtonValues);
 
   let authorUsername = user?.username;
   let authorId = user?.id;
@@ -93,7 +54,6 @@ function BookCreation() {
 
   const submitForm = (e: any) => {
     e.preventDefault();
-    let form = e.target;
     newBook = {
       bookTitle,
       image,
@@ -115,24 +75,7 @@ function BookCreation() {
         let bookGenres: GenreProps = {
           bookId: data.id,
           bookTitle,
-          sciFi: sci_fi,
-          fantasy,
-          romance,
-          actionAdventure: action_adventure,
-          sliceOfLife: slice_of_life,
-          comedy,
-          tragedy,
-          mystery,
-          thriller,
-          horror,
-          isekai,
-          reincarnation,
-          transmigration,
-          historical,
-          military,
-          school,
-          spy,
-          martialArts: martial_arts,
+          ...dik
         };
         fetch(`${process.env.REACT_APP_URL}bookGenres/create`, {
           method: "POST",
@@ -152,7 +95,7 @@ function BookCreation() {
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
+      }),[dik, bookTitle]
   };
 
   return (
@@ -178,13 +121,14 @@ function BookCreation() {
         </Form.Group>
         <div className="container">
           <ul className="ks-cboxtags">
-            {formCheckBoxes.map((genre, index) => {
+          {genreTypes.map((genre, index) => {
               return (
                 <li key={genre}>
                   <Form.Group className={index.toString()} controlId={genre}>
                     <GenreButton
                       id={genre}
-                      onClick={formCheckBoxMethods[index]}
+                      onClick={()=>{
+                        setDik({...dik, [genre]:!dik[genre]})}}
                     />
                   </Form.Group>
                 </li>
@@ -202,11 +146,6 @@ function BookCreation() {
         <Button variant="secondary" onClick={previousPage}>
           Cancel
         </Button>
-
-        {/* {% for element in form_checkboxes %}
-                <li><input type="checkbox" id={% print(element) %} name={% print(element) %} />
-                <label for={% print(element) %}>{% print(element) %}</label></li>
-          {% endfor %} */}
       </Form>
     </React.Fragment>
   );
