@@ -67,6 +67,18 @@ export const NotificationProvider: React.FC<
     nazghoul,
   }
 
+  //context paramater of MyNotification
+  enum Errors {
+    genericError,
+    emailExists,
+    login,
+    bookCreation,
+    chapterCreation,
+    profileCreation,
+    editComplete,
+    logout,
+  }
+
   function GetAvatarImage(avatar: Avatars) {
     switch (avatar) {
       case Avatars.elf:
@@ -79,20 +91,14 @@ export const NotificationProvider: React.FC<
     }
   }
 
-  //context paramater of MyNotification
-  enum Errors {
-    login,
-    bookCreation,
-    chapterCreation,
-    profileCreation,
-    editComplete,
-    logout,
-  }
-
   function GetErrorMessage(Error: Errors) {
     switch (Error) {
+      case Errors.genericError:
+        return "There was a problem with your request."
+      case Errors.emailExists:
+        return "That email already exists, reset your password or try another email";
       case Errors.login:
-        return "It seems you can't come in. See if trying again works or become a member if you haven't already.";
+        return "Your information you provided may be wrong. See if trying again works or become a member if you haven't already.";
       case Errors.bookCreation:
         return "There are a few issues with your book form. Let me help you with that. Please change or fill in where i have marked on the form.";
       case Errors.chapterCreation:
@@ -113,7 +119,7 @@ export const NotificationProvider: React.FC<
     Store.addNotification({
       content: MyNotification,
       container: "bottom-right",
-      insert: "bottom",
+      insert: "top",
       animationIn: ["animated", "fadeIn"],
       animationOut: ["animated", "fadeOut"],
 
