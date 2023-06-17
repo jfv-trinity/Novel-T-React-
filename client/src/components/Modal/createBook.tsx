@@ -1,18 +1,48 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { BookProps } from "../../common/Book";
 import { MdAddCircleOutline } from "react-icons/md";
 import "../../components/Views/AuthorListings.scss";
+import GenreProps from "../../common/Genres";
+import GenreButton from "../Container/Genre";
 
 export function CreateBookModal(data: any) {
   const [bookTitle, setBookTitle] = React.useState(String);
   const [image, setImage] = React.useState(String);
   const [summary, setSummary] = React.useState(String);
-  // const [bookGenres, setBookGenres] = React.useState(String);
-  // const [rank, setRank] = React.useState(Number);
-  // const [rating, setRating] = React.useState(Number);
+
+  const genreTypes:string[] = [
+    "sciFi",
+    "fantasy",
+    "romance",
+    "actionAdventure",
+    "sliceOfLife",
+    "comedy",
+    "tragedy",
+    "mystery",
+    "thriller",
+    "horror",
+    "isekai",
+    "reincarnation",
+    "transmigration",
+    "historical",
+    "military",
+    "school",
+    "spy",
+    "martialArts",
+  ];
+
+  const genreButtonValues:Record<string, boolean> = {}
+
+  genreTypes.forEach((key, index)=> {
+    genreButtonValues[key] = false;
+  })
+
+  const [bookId, setBookId] = useState(Number);
+  const [dik, setDik] = useState<Record<string, boolean>>(genreButtonValues);
+
   const publishDate = new Date();
   let authorUsername = data.user?.username;
   let authorId = data.user?.id;
@@ -23,7 +53,7 @@ export function CreateBookModal(data: any) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const submitForm = () => {
+  const submitForm = useCallback(() => {
     newBook = {
       bookTitle,
       image,
@@ -40,9 +70,25 @@ export function CreateBookModal(data: any) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newBook),
-    });
+    })
+    .then((response) => response.json())
+      .then((data) => {
+        setBookId(parseInt(data.id));
+        let bookGenres: GenreProps = {
+          bookId: data.id,
+          bookTitle,
+          ...dik
+        };
+        fetch(`${process.env.REACT_APP_URL}bookGenres/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookGenres),
+        })
     window.location.reload();
-  };
+  })}
+,[dik, bookTitle]);
 
   return (
     <React.Fragment>
@@ -78,6 +124,23 @@ export function CreateBookModal(data: any) {
                 onChange={(e) => setSummary(e.target.value)}
               />
             </Form.Group>
+            <div className="container">
+          <ul className="ks-cboxtags">
+            {genreTypes.map((genre, index) => {
+              return (
+                <li key={genre}>
+                  <Form.Group className={index.toString()} controlId={genre}>
+                    <GenreButton
+                      id={genre}
+                      onClick={()=>{
+                        setDik({...dik, [genre]:!dik[genre]})}}
+                    />
+                  </Form.Group>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
           </Form>
         </Modal.Body>
         <Modal.Footer>
