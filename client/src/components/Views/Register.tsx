@@ -7,11 +7,22 @@ import UserProps from "../../common/User";
 import { UserContext } from "../../static/UserContext";
 import "./Register.scss";
 import pageBackground from "../../static/images/Login-Background.jpg";
+import { NotificationContext } from "../../static/NotificationContext";
 // import formBackground from "../../static/images/sign-in-form.jpg";
 
 function RegisterPage() {
-  const { LoginUser } = React.useContext(UserContext)!;
+  
   const navigate = useNavigate();
+  const { LoginUser } = React.useContext(UserContext)!;
+  const {
+    Avatars,
+    Errors,
+    GetErrorMessage,
+    GetAvatarImage,
+    HandleNotification,
+    MyNotification,
+  } = React.useContext(NotificationContext)!;
+  
   let newUser: UserProps;
 
   const [email, setEmail] = useState("");
@@ -28,9 +39,7 @@ function RegisterPage() {
       isLoggedIn: true,
     };
     const checkForEmail = { email };
-    // work on this  if password1 = password2 then fetch else return password !=
     if (password == passwordConfirmation) {
-      console.log(newUser);
       fetch(`${process.env.REACT_APP_URL}users/register`, {
         method: "POST",
         headers: {
@@ -59,16 +68,31 @@ function RegisterPage() {
             })
               .then((response) => response.json())
               .then((data) => {
-                console.log("data was reached", data);
                 localStorage.clear();
                 LoginUser(data);
                 navigate(`/MyLibrary/${data.id}`);
               });
           }
+          else{
+            HandleNotification(
+              MyNotification(
+                GetErrorMessage(Errors.emailExists),
+                GetAvatarImage(Avatars.elf)
+              )
+            );
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
         });
+    }
+    else{
+      HandleNotification(
+        MyNotification(
+          GetErrorMessage(Errors.genericError),
+          GetAvatarImage(Avatars.elf)
+        )
+      );
     }
   };
 
