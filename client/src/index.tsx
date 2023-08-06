@@ -7,6 +7,7 @@ import { UserProvider } from "./static/UserContext";
 import { ReactNotifications } from "react-notifications-component";
 import { NotificationProvider } from "./static/NotificationContext";
 
+console.log("this is the process", process.env.NODE_ENV)
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
