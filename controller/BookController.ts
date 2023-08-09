@@ -33,7 +33,8 @@ export class BookController {
     }
 
     async findByIdLessThan(request: Request, response: Response, next: NextFunction) {
-        return this.bookRepository.find({ where: { id: LessThan(parseInt(request.params.id)) } })
+        // return this.bookRepository.find({ where: { id: LessThan(parseInt(request.params.id)) } })
+        return this.bookRepository.find({ order: { dateUpdated: "DESC" } })
     }
 
     async findByAuthor(request: Request, response: Response, next: NextFunction) {

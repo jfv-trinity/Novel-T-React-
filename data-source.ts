@@ -8,7 +8,6 @@ import process, { env } from "process"
 
 export let AppDataSource:DataSource;
 
-console.log("this is the process env", process.env.NODE_ENV);
 if (process.env.NODE_ENV == "production") {
     AppDataSource = new DataSource({
         type: "postgres",
@@ -26,13 +25,12 @@ if (process.env.NODE_ENV == "production") {
     })
 }
 else {
-   
     AppDataSource = new DataSource({
     type: "postgres",
     host: "localhost",
     port: 5432,
     username: "postgres",
-    password: "Abathur",
+    password: "admin",
     database: "react-novel-t",
     synchronize: true,
     logging: false,
@@ -40,5 +38,5 @@ else {
     migrations: [],
     subscribers: [],
     })
-     console.log(process.env.NODE_ENV, ": this is the process env");
+     console.log(process.env.NODE_ENV, ": this is the process env?");
 }
