@@ -40,14 +40,16 @@ function Login() {
           LoginUser(data);
           navigate(`/MyLibrary/${data.id}`);
         } 
+        if (data.password != loginPassword) {
+          HandleNotification(
+            MyNotification(
+              GetErrorMessage(Errors.login),
+              GetAvatarImage(Avatars.elf)
+            )
+          );
+        }
       })
       .catch((error) => {
-        HandleNotification(
-          MyNotification(
-            GetErrorMessage(Errors.login),
-            GetAvatarImage(Avatars.elf)
-          )
-        );
         console.error("Error:", error);
       });
   };
