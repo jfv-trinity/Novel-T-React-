@@ -46,7 +46,8 @@ function BookCreation() {
   })
  
   const [dik, setDik] = useState<Record<string, boolean>>(genreButtonValues);
-
+  const publishDate = new Date();
+  
   let authorUsername = user?.username;
   let authorId = user?.id;
   let status = "Ongoing";
@@ -57,6 +58,7 @@ function BookCreation() {
       bookTitle,
       image,
       summary,
+      publishDate,
       status,
       authorId,
       authorUsername,
