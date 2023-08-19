@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/static/css/main.e96de131.css",
-    "main.js": "/static/js/main.306dd1aa.js",
+    "main.js": "/static/js/main.bc875d6f.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/resume-background.jpg": "/static/media/resume-background.40a9e1f4147013ce9857.jpg",
     "static/media/sign-in-formV2.png": "/static/media/sign-in-formV2.62e5ce7a267d8048fc5d.png",
     "static/media/Login-Background.jpg": "/static/media/Login-Background.825e4de765ab3d8743e8.jpg",
     "static/media/Personal-Library.jpg": "/static/media/Personal-Library.d6ed7bae0cb814666fd6.jpg",
     "static/media/icon.png": "/static/media/icon.9d461358e6c7fe488e4b.png",
-    "static/media/myResume.pdf": "/static/media/myResume.07136843cb5cf35a3c9c.pdf",
+    "static/media/myResume.pdf": "/static/media/myResume.4689e8f5b26a176367e1.pdf",
     "static/media/Notification-Icon-CareTaker.jpg": "/static/media/Notification-Icon-CareTaker.557775743585afa0ffc7.jpg",
     "static/media/Book-Loading.jpg": "/static/media/Book-Loading.e4bf42c17156862144a6.jpg",
     "index.html": "/index.html",
     "main.e96de131.css.map": "/static/css/main.e96de131.css.map",
-    "main.306dd1aa.js.map": "/static/js/main.306dd1aa.js.map",
+    "main.bc875d6f.js.map": "/static/js/main.bc875d6f.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e96de131.css",
-    "static/js/main.306dd1aa.js"
+    "static/js/main.bc875d6f.js"
   ]
 }
