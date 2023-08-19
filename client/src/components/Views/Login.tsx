@@ -21,13 +21,12 @@ function Login() {
   } = React.useContext(NotificationContext)!;
   
   let loginAttempts = 0
-  console.log(loginAttempts)
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(loginAttempts)
+    loginAttempts++;
     const login = { loginEmail };
     fetch(`${process.env.REACT_APP_URL}users/login`, {
       method: "POST",
@@ -44,7 +43,6 @@ function Login() {
           navigate(`/MyLibrary/${data.id}`);
         } 
         else {
-          loginAttempts++;
           HandleNotification(
             MyNotification(
               GetErrorMessage(Errors.login),
