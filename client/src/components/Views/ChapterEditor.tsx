@@ -11,6 +11,7 @@ function ChapterEditor() {
   const [chapterTitle, setChapterTitle] = React.useState(String);
   const [context, setContext] = React.useState(String);
   const [bookId, setBookId] = React.useState(Number);
+
   let chapterAuthor = user?.id;
   let updatedChapter: ChapterProps;
   const navigate = useNavigate();
