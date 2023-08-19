@@ -13,7 +13,6 @@ export function CreateChapterModal(data: any) {
   let chapterAuthor = data.user?.id;
   let newChapter: ChapterProps;
   let updatedBook: BookProps;
-
   let numberOfChapters: number = data.book?.numberOfChapters;
   let options: Array<number> = [numberOfChapters];
 
