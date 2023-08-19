@@ -20,12 +20,14 @@ function Login() {
     MyNotification,
   } = React.useContext(NotificationContext)!;
   
-
+  let loginAttempts = 0
+  console.log(loginAttempts)
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log(loginAttempts)
     const login = { loginEmail };
     fetch(`${process.env.REACT_APP_URL}users/login`, {
       method: "POST",
@@ -36,11 +38,13 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.password === loginPassword) {
+        console.error("this is the data", data);
+        if (data && data.password === loginPassword) {
           LoginUser(data);
           navigate(`/MyLibrary/${data.id}`);
         } 
-        if (data.password != loginPassword) {
+        else {
+          loginAttempts++;
           HandleNotification(
             MyNotification(
               GetErrorMessage(Errors.login),
