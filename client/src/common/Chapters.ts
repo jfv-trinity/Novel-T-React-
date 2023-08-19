@@ -3,11 +3,11 @@ import UserProps from "./User";
 
 interface ChapterProps{
     id?: number;
-    chapterTitle?: string;
     bookTitle?: string;
+    bookId?: number;
+    chapterTitle?: string;
     chapterNumber?: number;
     context?: string;
-    bookId?: number;
     user?: UserProps;
     chapterAuthor?: number;
     book?: BookProps;
