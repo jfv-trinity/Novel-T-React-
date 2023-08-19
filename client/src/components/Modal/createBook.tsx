@@ -40,7 +40,7 @@ export function CreateBookModal(data: any) {
     genreButtonValues[key] = false;
   })
 
-  const [bookId, setBookId] = useState(Number);
+  // const [bookId, setBookId] = useState(Number);
   const [dik, setDik] = useState<Record<string, boolean>>(genreButtonValues);
 
   const publishDate = new Date();
@@ -54,6 +54,7 @@ export function CreateBookModal(data: any) {
   const handleShow = () => setShow(true);
 
   const submitForm = useCallback(() => {
+    
     newBook = {
       bookTitle,
       image,
@@ -73,7 +74,7 @@ export function CreateBookModal(data: any) {
     })
     .then((response) => response.json())
       .then((data) => {
-        setBookId(parseInt(data.id));
+        // setBookId(parseInt(data.id));
         let bookGenres: GenreProps = {
           bookId: data.id,
           bookTitle,
