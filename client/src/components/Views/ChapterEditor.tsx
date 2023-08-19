@@ -5,6 +5,7 @@ import { UserContext } from "../../static/UserContext";
 import ChapterProps from "../../common/Chapters";
 
 function ChapterEditor() {
+  const navigate = useNavigate();
   const user = useContext(UserContext);
   const params = useParams();
   const [id, setId] = React.useState(Number);
@@ -14,8 +15,7 @@ function ChapterEditor() {
 
   let chapterAuthor = user?.id;
   let updatedChapter: ChapterProps;
-  const navigate = useNavigate();
-
+  
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
