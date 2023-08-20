@@ -16,7 +16,6 @@ function BookCreation() {
   const [bookTitle, setBookTitle] = useState(String);
   const [summary, setSummary] = useState(String);
   const [image, setImage] = useState(String);
-  const [bookId, setBookId] = useState(Number);
 
   const genreTypes:string[] = [
     "sciFi",
@@ -63,6 +62,7 @@ function BookCreation() {
       authorId,
       authorUsername,
     };
+
     fetch(`${process.env.REACT_APP_URL}books`, {
       method: "POST",
       headers: {
@@ -70,14 +70,16 @@ function BookCreation() {
       },
       body: JSON.stringify(newBook),
     })
+
       .then((response) => response.json())
       .then((data) => {
-        setBookId(parseInt(data.id));
+        debugger;
         let bookGenres: GenreProps = {
           bookId: data.id,
           bookTitle,
           ...dik
         };
+
         fetch(`${process.env.REACT_APP_URL}bookGenres/create`, {
           method: "POST",
           headers: {
@@ -85,6 +87,7 @@ function BookCreation() {
           },
           body: JSON.stringify(bookGenres),
         })
+        
           .then((response) => response.json())
           .then((data) => {
             console.log("data was reached", data);
@@ -92,11 +95,9 @@ function BookCreation() {
           })
           .catch((error) => {
             console.error("Error:", error);
-          });
+          })
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      })}
+     }
       ,[dik, bookTitle]);
 
   return (

@@ -64,7 +64,7 @@ export function CreateBookModal(data: any) {
       authorId,
       authorUsername,
     };
-
+   
     fetch(`${process.env.REACT_APP_URL}books`, {
       method: "POST",
       headers: {
@@ -72,9 +72,9 @@ export function CreateBookModal(data: any) {
       },
       body: JSON.stringify(newBook),
     })
+
     .then((response) => response.json())
       .then((data) => {
-        // setBookId(parseInt(data.id));
         let bookGenres: GenreProps = {
           bookId: data.id,
           bookTitle,
