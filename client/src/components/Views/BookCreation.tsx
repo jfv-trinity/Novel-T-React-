@@ -73,7 +73,6 @@ function BookCreation() {
 
       .then((response) => response.json())
       .then((data) => {
-        debugger;
         let bookGenres: GenreProps = {
           bookId: data.id,
           bookTitle,
