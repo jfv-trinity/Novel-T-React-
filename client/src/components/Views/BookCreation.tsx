@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
 import react, { useContext } from "react";
 import "./BookCreation.scss";
-import { previousPage } from "../../static/index";
+import { displayMockBook, previousPage } from "../../static/index";
 import { UserContext } from "../../static/UserContext";
 import { BookProps } from "../../common/Book";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import GenreButton from "../Container/Genre";
 import GenreProps from "../../common/Genres";
+import tempImage from "../../static/images/icon.png";
 
 function BookCreation() {
   const navigate = useNavigate();
@@ -46,13 +47,14 @@ function BookCreation() {
  
   const [dik, setDik] = useState<Record<string, boolean>>(genreButtonValues);
   const publishDate = new Date();
-  
+
   let authorUsername = user?.username;
   let authorId = user?.id;
   let status = "Ongoing";
   let newBook: BookProps;
 
   const submitForm = useCallback(() => {
+
     newBook = {
       bookTitle,
       image,
@@ -71,13 +73,13 @@ function BookCreation() {
       body: JSON.stringify(newBook),
     })
 
-      .then((response) => response.json())
-      .then((data) => {
-        let bookGenres: GenreProps = {
-          bookId: data.id,
-          bookTitle,
-          ...dik
-        };
+    .then((response) => response.json())
+    .then((data) => {
+      let bookGenres: GenreProps = {
+        bookId: data.id,
+        bookTitle,
+        ...dik
+      };
 
         fetch(`${process.env.REACT_APP_URL}bookGenres/create`, {
           method: "POST",
@@ -86,16 +88,11 @@ function BookCreation() {
           },
           body: JSON.stringify(bookGenres),
         })
-        
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("data was reached", data);
-            navigate(`/AuthorListings/${user?.id}`);
-          })
           .catch((error) => {
             console.error("Error:", error);
           })
       })
+      navigate(`/AuthorListings/${user?.id}`);
      }
       ,[dik, bookTitle]);
 
@@ -137,6 +134,26 @@ function BookCreation() {
             })}
           </ul>
         </div>
+  
+      <div className="novelContainer">
+        <img src={tempImage} className="novelCover"></img>
+        <div className="novelContext">
+          <div className="novelTitle space">
+            <b>{bookTitle}</b>
+          </div>
+          <div className="novelStats space">
+            <b>Author: {authorUsername}</b>
+            <b>Chapters: {}</b>
+            <b>Status: {status}</b>
+          </div>
+          <div className="space">populate line with genres of novel</div>
+          <div className="space"> {summary} </div>
+
+          <div className="space">  Read More  </div>
+        </div>
+      </div>
+ 
+     
 
         <Button type="submit" className="btn btn-primary">
           Create Book

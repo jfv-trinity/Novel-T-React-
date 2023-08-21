@@ -80,6 +80,7 @@ export function CreateBookModal(data: any) {
           bookTitle,
           ...dik
         };
+        
         fetch(`${process.env.REACT_APP_URL}bookGenres/create`, {
           method: "POST",
           headers: {
