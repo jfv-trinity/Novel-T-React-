@@ -28,6 +28,16 @@ export function displayBooks(books: any[]) {
   });
 }
 
+export function displayMockBook(book: BookProps) {
+    return (
+      <div key={book.id} className="novelC">
+        <BookEntity
+          book={book}
+        />
+      </div>
+    );
+}
+
 export function displayLibraryBooks(books: any[], user?: UserProps) {
   return books.map((book) => {
     return (
