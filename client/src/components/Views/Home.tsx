@@ -13,7 +13,6 @@ function HomePage() {
 
   let user = React.useContext(UserContext)!;
 
-
   console.log("this is the process", process.env.NODE_ENV)
   useEffect(() => {
     fetch(`${process.env.REACT_APP_URL}books/search/${numberOfNovelResults}`, {
