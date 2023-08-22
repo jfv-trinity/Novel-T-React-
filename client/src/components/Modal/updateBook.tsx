@@ -4,16 +4,35 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { BookProps } from "../../common/Book";
 import UserProps from "../../common/User";
+import StatusButton from "../Container/Status";
 
 export function UpdateBookModal(data: any) {
   const [bookTitle, setBookTitle] = React.useState(data.book?.bookTitle);
   const [image, setImage] = React.useState(String);
   const [id, setId] = React.useState(data.id);
   const [summary, setSummary] = React.useState(data.book?.summary);
-  const [status, setStatus] = React.useState(String);
+  const [status, setStatus] = React.useState(data.book?.status);
   // const [bookGenres, setBookGenres] = React.useState(String);
   // const [rank, setRank] = React.useState(Number);
   // const [rating, setRating] = React.useState(Number);
+
+  const bookStatusOptions:string[] = [
+   "Ongoing",
+   "Hiatus/OnBreak",
+   "Completed",
+   "OneShot"
+  ];
+
+  // const statusButtonValues:Record<string, boolean> = {}
+
+  // bookStatusOptions.forEach((option:string, index)=> {
+  //   if(status == option){
+  //     statusButtonValues[option] = true;
+  //   }
+  //   else{
+  //     statusButtonValues[option] = false;
+  //   }
+  // })
 
   let authorId = data.user?.id;
   let updatedBook: BookProps;
@@ -40,7 +59,6 @@ export function UpdateBookModal(data: any) {
   const submitForm = () => {
     updatedBook = {
       bookTitle,
-      //image,
       id,
       summary,
       publishDate,
@@ -55,7 +73,7 @@ export function UpdateBookModal(data: any) {
       },
       body: JSON.stringify(updatedBook),
     });
-    //window.location.reload();
+    window.location.reload();
   };
 
   return (
@@ -89,17 +107,28 @@ export function UpdateBookModal(data: any) {
                 onChange={(e) => setSummary(e.target.value)}
               />
             </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="status">
+            <Form.Group className="mb-3" controlId="status">
               <Form.Label>Book Status</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder={
-                  " Describe your book to get your readers interested."
-                }
-                onChange={(e) => setSummary(e.target.value)}
-              />
-            </Form.Group> */}
+              <div className="container">
+          <ul className="ks-cboxtags">
+            {bookStatusOptions.map((option, index) => {
+              return (
+                <li key={option}>
+                  <Form.Group className={index.toString()} controlId={option}>
+                    <StatusButton
+                      id={option}
+                      currentStatus={status}
+                      onClick={()=>{
+                        setStatus(option)}
+                      }
+                    />
+                  </Form.Group>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
