@@ -10,7 +10,7 @@ import { border } from "./styles";
 const emptyGrid = new Array(DIMENSIONS ** 2).fill(null);
 const board = new Board();
  
-function XO() {
+function TicTacToe() {
   const [modalOpen, setModalOpen] = useState(false);
   
   const [grid, setGrid] = useState(emptyGrid);
@@ -242,4 +242,4 @@ const Strikethrough = styled.div<{ styles: string | null }>`
   width: ${({ styles }) => !styles && "0px"};
 `;
 
-export default XO;
+export default TicTacToe;
