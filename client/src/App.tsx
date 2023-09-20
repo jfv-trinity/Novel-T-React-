@@ -25,8 +25,7 @@ import UserBookPage from "./components/Views/UserBookInfo";
 import BookCreation from "./components/Views/BookCreation";
 import Contact from "./components/Views/Contact";
 import Info from "./components/Views/Info";
-
-import XO from "./TicTacToe/TicTacToe";
+import TicTacToe from "./TicTacToe/TicTacToe";
 import styled from "styled-components";
 // import "papercss/dist/paper.min.css";
 
@@ -51,7 +50,7 @@ function App() {
           <Routes>
             {/* any routes below this lines are unfinished due to either backend or frontend */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/games" element={<XO/>} />
+            <Route path="/games" element={<TicTacToe/>} />
             <Route path="/addbook" element={<BookCreation />} />
             <Route path="HomePage" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -96,11 +95,11 @@ function App() {
   );
 }
 
-const TicTacToe = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
+// const TicTacToe = styled.main`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+// `;
 
 export default App;
