@@ -93,6 +93,7 @@ function BookCreation() {
           })
       })
       navigate(`/AuthorListings/${user?.id}`);
+      window.location.reload();
      }
       ,[dik, bookTitle]);
 
@@ -135,21 +136,19 @@ function BookCreation() {
           </ul>
         </div>
   
-      <div className="novelContainer">
+        <div className="novelContainer">
         <img src={tempImage} className="novelCover"></img>
         <div className="novelContext">
           <div className="novelTitle space">
             <b>{bookTitle}</b>
           </div>
           <div className="novelStats space">
-            <b>Author: {authorUsername}</b>
-            <b>Chapters: {}</b>
-            <b>Status: {status}</b>
+            {/* <b>Chapters: {book?.numberOfChapters}</b> */}
+            <b className="statPadding">Views: Temp #</b>
+            <b className="statPadding">Rating: Temp #</b>
+            <b className="statPadding">Comments: Temp #</b>
           </div>
-          <div className="space">populate line with genres of novel</div>
-          <div className="space"> {summary} </div>
-
-          <div className="space">  Read More  </div>
+          <div className="summary space"> {summary} </div>
         </div>
       </div>
  
