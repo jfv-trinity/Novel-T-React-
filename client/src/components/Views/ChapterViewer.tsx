@@ -4,15 +4,34 @@ import { useParams, useNavigate } from "react-router-dom";
 import { BookProps } from "../../common/Book";
 import ChapterProps from "../../common/Chapters";
 import background from "../../static/images/Book-Loading.jpg";
+import { param } from "express-validator";
 
 function ChapterView() {
-  const [book, setBook] = React.useState<BookProps>();
   const [chapter, setChapter] = React.useState<ChapterProps>();
+  const [chapters, setChapters] = React.useState<any[]>([]);
   const params = useParams();
   const navigate = useNavigate();
 
+  
+
+  // let currentChapter = chapter?.chapterNumber;
+  // console.log("chapters hit", chapters![0]);
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_URL}chapter/${params.id}`, {
+    fetch(`${process.env.REACT_APP_URL}chapters/${params.bookId}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }) 
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        setChapters(data);
+        
+      }
+    });
+    fetch(`${process.env.REACT_APP_URL}chapters/${params.bookId}/${params.chapterNumber}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +40,8 @@ function ChapterView() {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          setChapter(data);
+          setChapter(data[0]);
+     
         }
       })
       .catch((error) => {
@@ -29,58 +49,47 @@ function ChapterView() {
       });
   }, []);
 
-  useEffect(() => {
-    if (chapter)
-      fetch(`${process.env.REACT_APP_URL}books/${chapter?.bookId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data) {
-            setBook(data);
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-  }, [chapter?.id]);
-
   return (
     <React.Fragment>
       <Helmet>
         <style>{`body {background-image: ${`url(${background}); overflow: auto;`} `}</style>
       </Helmet>
       <div className="title">
-        <h1>{book?.bookTitle}</h1>
+        <h1>{chapter?.bookTitle}</h1>
       </div>
       <div className="panel">
         <div className="details">{chapter?.context}</div>
       </div>
-      {chapter ? (
+      {chapter && chapters ? (
         <div>
-          <button
+        {chapter.chapterNumber! > chapters[0].chapterNumber ? (
+            <button
             onClick={() => {
-              navigate(`/Chapter/${chapter.chapterNumber!}`);
+              navigate(`/Chapter/${chapter.bookId}/${chapter.chapterNumber! - 1}`)
               window.location.reload();
             }}
           >
             Previous
           </button>
-          <button
+          ) : null}
+
+          {chapter.chapterNumber! < chapters[chapters.length-1].chapterNumber ? (
+            <button
             onClick={() => {
-              navigate(`/Chapter/${chapter.chapterNumber! + 1}`);
+              navigate(`/Chapter/${chapter.bookId}/${chapter.chapterNumber! + 1}`)
               window.location.reload();
             }}
           >
             Next
           </button>
+           ) : null} 
+
         </div>
       ) : null}
     </React.Fragment>
   );
+
+ 
 }
 
 export default ChapterView;
