@@ -117,6 +117,12 @@ export const Routes = [{
     }, 
 {
     method: "get",
+    route: "/chapters/:bookId/:chapterNumber",
+    controller: ChapterController,
+    action: "findBookChapter",
+    }, 
+{
+    method: "get",
     route: "/chapter/:id",
     controller: ChapterController,
     action: "one",
