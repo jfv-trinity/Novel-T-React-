@@ -77,6 +77,7 @@ export function displayChapters(
         <ChapterEntity
           id={chapter.id}
           chapterTitle={chapter.chapterTitle}
+          chapterNumber={chapter.chapterNumber}
           context={chapter.context}
           bookId={chapter.bookId}
           chapterAuthor={chapter.chapterAuthor}
