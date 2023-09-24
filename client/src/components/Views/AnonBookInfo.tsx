@@ -18,7 +18,6 @@ function AnonBookInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for book", data);
         if (data) {
           setBook(data);
         }
@@ -37,7 +36,6 @@ function AnonBookInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for chapter", data);
         if (data) {
           setChapters(data);
         }
