@@ -1,22 +1,31 @@
+import CommentProps from "./Comment";
 import UserProps from "./User";
 
 interface BookProps{
     id?: number;
-    bookTitle?: string;
-    numberOfChapters?: number;
-    image?: string;
-    MRchapter?: string;
-    Rchapter?: string;
-    authorId?: number;
     authorUsername?: string;
     authorPenName?: string;
+    authorId?: number;
+    bookTitle?: string;
+    commentCount?: number;
+    dateUpdated?: Date;
+    image?: string;
+    numberOfChapters?: number;
+    MRchapter?: string;
+    Rchapter?: string;
     summary?: string;
     publishDate?: Date;
-    dateUpdated?: Date;
     status?: string;
     bookGenres?: [];
     rank?: number;
+    views?: number;
     rating?: number;
+    comments?: CommentProps;
+    user?: UserProps;
+}
+
+export interface ContainerProps{
+    book?: BookProps;
     user?: UserProps;
 }
 
