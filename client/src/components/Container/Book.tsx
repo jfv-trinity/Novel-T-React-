@@ -20,6 +20,8 @@ const BookEntity: FC<ContainerProps> = ({
   // status,
   ...props
 }) => {
+  console.log("This is the book info: ",book);
+
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setshowEdit] = useState(false);
   const [authorization, setAuthorization] = useState(false);
@@ -47,14 +49,12 @@ const BookEntity: FC<ContainerProps> = ({
             <b>{book?.bookTitle}</b>
           </div>
           <div className="novelStats space">
-            <b>Author: {book?.authorUsername}</b>
-            <b>Chapters: {}</b>
-            <b>Status: {book?.status}</b>
+            {/* <b>Chapters: {book?.numberOfChapters}</b> */}
+            <b className="statPadding">Views:{book?.views} Temp #</b>
+            <b className="statPadding">Rating: {book?.rating}Temp #</b>
+            <b className="statPadding">Comments: {book?.commentCount}Temp #</b>
           </div>
-          <div className="space">populate line with genres of novel</div>
-          <div className="space"> {book?.summary} </div>
-
-          <div className="space">  Read More  </div>
+          <div className="summary space"> {book?.summary} </div>
         </div>
       </div>
       <div>

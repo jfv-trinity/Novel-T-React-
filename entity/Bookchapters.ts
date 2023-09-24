@@ -15,6 +15,12 @@ export class Bookchapters {
   id: number;
 
   @Column("character varying", {
+    name: "book_title",
+    length: 150,
+  })
+  bookTitle: string;
+
+  @Column("character varying", {
     name: "chapter_title",
     nullable: true,
     length: 150,

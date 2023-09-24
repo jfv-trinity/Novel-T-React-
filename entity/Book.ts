@@ -21,13 +21,15 @@ export class Book {
 
   @Column("character varying", {
     name: "book_title",
-    unique: true,
     length: 150,
   })
   bookTitle: string;
 
   @Column("character varying", { name: "summary", nullable: true })
   summary: string | null;
+
+  @Column("character varying", { name: "image", nullable: true })
+  image: string | null;
 
   @Column("character varying", { name: "author_username"})
   authorUsername: string;
