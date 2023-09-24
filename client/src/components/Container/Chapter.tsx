@@ -29,13 +29,13 @@ const ChapterEntity: FC<ChapterProps> = ({
     }
   }, [user?.id, book?.authorId]);
 
-  function retrieveChapter(id: number) {
-    navigate(`/Chapter/${id}`);
+  function retrieveChapter(bookId: number, chapterNumber: number) {
+    navigate(`/Chapter/${bookId}/${chapterNumber}`);
   }
 
   return (
     <React.Fragment>
-      <p className="chapter-link" onClick={() => retrieveChapter(id!)}>
+      <p className="chapter-link" onClick={() => retrieveChapter(bookId!, chapterNumber! )}>
         {chapterTitle}
       </p>
       <div className="chapter-options">
@@ -52,6 +52,7 @@ const ChapterEntity: FC<ChapterProps> = ({
               show={showEdit}
               handleClose={() => setshowEdit(!showEdit)}
               book={book}
+              chapter={chapter}
             />
 
             <MdDeleteForever
