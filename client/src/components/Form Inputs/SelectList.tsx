@@ -1,19 +1,22 @@
 interface List {
+  chapterId?: number;
   className?: string;
   options: number[];
-  selectedOption: number;
+  selectedOption?: number;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SelectList: React.FC<List> = ({
+  chapterId,
   className,
   options,
   selectedOption,
   onChange,
 }) => {
-  if (options && options.length > 1) {
+
+  if (chapterId && options.length > 1) {
     return (
-      <select value={selectedOption} onChange={onChange} className={className}>
+      <select value={selectedOption} onChange={onChange} className={className} defaultValue={chapterId}>
         {options.map((option) => (
           <option key={option} value={option}>
             Chapter {option}
