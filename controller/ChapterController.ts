@@ -30,8 +30,10 @@ export class ChapterController {
     }
 
     async findByBook(request: Request, response: Response, next: NextFunction) {
-        return this.chapterRepository.find({ where: { bookId: parseInt(request.params.book_id) } });
+        return this.chapterRepository.find({ where: { bookId: parseInt(request.params.book_id)} , order: { chapterNumber: "ASC" } });
     }
-    
 
+    async findBookChapter(request: Request, response: Response, next: NextFunction) {
+        return this.chapterRepository.find({ where: { bookId: parseInt(request.params.bookId), chapterNumber: parseInt(request.params.chapterNumber) }, });
+    }
 }
