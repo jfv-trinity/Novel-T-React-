@@ -12,12 +12,13 @@ import "./createChapter.scss";
 
 //chapterEditorModal Rename function and file
 export function UpdateChapterModal(data: any) {
+
+  const [numberOfChapters, setNumberOfChapters] = React.useState(data.book?.numberOfChapters);
+
   const user = useContext(UserContext);
   let chapterAuthor = user?.id;
   let updatedChapter: ChapterProps;
   let updatedBook: BookProps;
-
-  let numberOfChapters: number = data.book?.numberOfChapters;
   let options: Array<number> = [];
 
   for (let x = 0; x <= numberOfChapters; x++) {
@@ -28,11 +29,11 @@ export function UpdateChapterModal(data: any) {
   const [chapterTitle, setChapterTitle] = React.useState(String);
   const [context, setContext] = React.useState(String);
   const [bookId, setBookId] = React.useState(Number);
-  const [selectedOption, setSelectedOption] = React.useState(options.length);
+  const [chapterId, setChapterId] = React.useState(data.chapter.id);
   const dateUpdated = new Date();
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    setSelectedOption(parseInt(event.target.value));
+    setChapterId(parseInt(event.target.value));
   }
 
   const submitForm = () => {
@@ -42,7 +43,7 @@ export function UpdateChapterModal(data: any) {
       context,
       bookId,
       chapterAuthor,
-      chapterNumber: selectedOption,
+      chapterNumber: chapterId,
     };
     updatedBook = {
       dateUpdated,
@@ -104,7 +105,7 @@ export function UpdateChapterModal(data: any) {
               <SelectList
                 className="float-right"
                 options={options}
-                selectedOption={selectedOption}
+                chapterId={chapterId}
                 onChange={handleChange}
               />
               <Form.Control

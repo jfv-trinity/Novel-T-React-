@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -9,16 +9,19 @@ import SelectList from "../Form Inputs/SelectList";
 import "./createChapter.scss";
 
 export function CreateChapterModal(data: any) {
+
+  const [numberOfChapters, setNumberOfChapters] = React.useState(data.book?.numberOfChapters);
+
   let bookId = data.book?.id;
   let chapterAuthor = data.user?.id;
+  let newChapterNumber = numberOfChapters + 1;
   let newChapter: ChapterProps;
   let updatedBook: BookProps;
-  let numberOfChapters: number = data.book?.numberOfChapters;
   let options: Array<number> = [numberOfChapters];
 
   const [chapterTitle, setChapterTitle] = React.useState(String);
   const [context, setContext] = React.useState(String);
-  const [selectedOption, setSelectedOption] = React.useState(options.length);
+  const [chapterId, setchapterId] = React.useState(newChapterNumber);
   const dateUpdated = new Date();
 
   const [show, setShow] = useState(false);
@@ -26,24 +29,43 @@ export function CreateChapterModal(data: any) {
   const handleShow = () => setShow(true);
 
   function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    setSelectedOption(parseInt(event.target.value));
+    setchapterId(parseInt(event.target.value));
   }
 
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_URL}chapters/${data.book.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setNumberOfChapters(data.length);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
   const submitForm = () => {
+    
     newChapter = {
       chapterTitle,
       context,
       bookId,
       chapterAuthor,
-      chapterNumber: selectedOption,
+      chapterNumber: newChapterNumber,
+      bookTitle: data.book.bookTitle
     };
 
     updatedBook = {
-      numberOfChapters: selectedOption,
+      numberOfChapters: numberOfChapters+1,
       dateUpdated,
     };
 
-    console.log("the new chapter is ", newChapter);
     fetch(`${process.env.REACT_APP_URL}chapters`, {
       method: "POST",
       headers: {
@@ -52,7 +74,7 @@ export function CreateChapterModal(data: any) {
       body: JSON.stringify(newChapter),
     });
 
-    fetch(`${process.env.REACT_APP_URL}books/${data.book.id}`, {
+    fetch(`${process.env.REACT_APP_URL}books/${bookId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +104,7 @@ export function CreateChapterModal(data: any) {
               <SelectList
                 className="float-right"
                 options={options}
-                selectedOption={selectedOption}
+                chapterId={chapterId}
                 onChange={handleChange}
               />
               <Form.Control
