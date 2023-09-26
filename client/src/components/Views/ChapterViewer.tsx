@@ -4,18 +4,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { BookProps } from "../../common/Book";
 import ChapterProps from "../../common/Chapters";
 import background from "../../static/images/Book-Loading.jpg";
-import { param } from "express-validator";
 
 function ChapterView() {
+  
   const [chapter, setChapter] = React.useState<ChapterProps>();
   const [chapters, setChapters] = React.useState<any[]>([]);
   const params = useParams();
   const navigate = useNavigate();
-
-  
-
-  // let currentChapter = chapter?.chapterNumber;
-  // console.log("chapters hit", chapters![0]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_URL}chapters/${params.bookId}`,{
@@ -60,7 +55,7 @@ function ChapterView() {
       <div className="panel">
         <div className="details">{chapter?.context}</div>
       </div>
-      {chapter && chapters ? (
+      {chapter && chapters.length > 0 ? (
         <div>
         {chapter.chapterNumber! > chapters[0].chapterNumber ? (
             <button
@@ -76,6 +71,7 @@ function ChapterView() {
           {chapter.chapterNumber! < chapters[chapters.length-1].chapterNumber ? (
             <button
             onClick={() => {
+             
               navigate(`/Chapter/${chapter.bookId}/${chapter.chapterNumber! + 1}`)
               window.location.reload();
             }}
