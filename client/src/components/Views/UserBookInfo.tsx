@@ -101,8 +101,6 @@ function UserBookInfo() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for chapters", data);
-
         if (data) {
           setChapters(data);
         }

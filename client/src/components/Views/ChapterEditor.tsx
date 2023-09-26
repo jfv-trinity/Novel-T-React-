@@ -20,7 +20,6 @@ function ChapterEditor() {
     event.preventDefault();
 
     updatedChapter = { id, chapterTitle, context, bookId, chapterAuthor };
-    console.log("this is the information for updated chapter", updatedChapter);
 
     fetch(`${process.env.REACT_APP_URL}chapter/${id}`, {
       method: "PUT",
@@ -42,7 +41,6 @@ function ChapterEditor() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("this is the data for the individual chapter query", data);
         if (data) {
           setChapterTitle(data.chapterTitle);
           setContext(data.context);

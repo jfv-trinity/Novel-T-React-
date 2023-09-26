@@ -23,7 +23,6 @@ function AuthorListings() {
       .then((data) => {
         if (data) {
           setBooks(data);
-          console.log("this is the set data", data);
         }
       })
       .catch((error) => {

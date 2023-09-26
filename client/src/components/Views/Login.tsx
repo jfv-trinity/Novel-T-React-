@@ -37,7 +37,6 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.error("this is the data", data);
         if (data && data.password === loginPassword) {
           LoginUser(data);
           navigate(`/MyLibrary/${data.id}`);
