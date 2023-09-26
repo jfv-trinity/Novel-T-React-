@@ -57,7 +57,7 @@ function ChapterView() {
       </div>
       {chapter && chapters.length > 0 ? (
         <div>
-        {chapter.chapterNumber! > chapters[0].chapterNumber ? (
+        {chapter.chapterNumber! > chapters[0].chapterNumber! ? (
             <button
             onClick={() => {
               navigate(`/Chapter/${chapter.bookId}/${chapter.chapterNumber! - 1}`)
