@@ -20,7 +20,6 @@ const BookEntity: FC<ContainerProps> = ({
   // status,
   ...props
 }) => {
-  console.log("This is the book info: ",book);
 
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setshowEdit] = useState(false);
