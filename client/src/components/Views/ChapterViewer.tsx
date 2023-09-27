@@ -11,7 +11,6 @@ function ChapterView() {
   const [chapters, setChapters] = React.useState<any[]>([]);
   const params = useParams();
   const navigate = useNavigate();
-  console.log("chapters: ", chapters);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_URL}chapters/${params.bookId}`,{

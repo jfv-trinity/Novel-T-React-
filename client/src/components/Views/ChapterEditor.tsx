@@ -18,7 +18,6 @@ function ChapterEditor() {
   
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     updatedChapter = { id, chapterTitle, context, bookId, chapterAuthor };
 
     fetch(`${process.env.REACT_APP_URL}chapter/${id}`, {
@@ -28,7 +27,6 @@ function ChapterEditor() {
       },
       body: JSON.stringify(updatedChapter),
     });
-    console.log("submitted getting ready to redirect");
     navigate(-1);
   };
 

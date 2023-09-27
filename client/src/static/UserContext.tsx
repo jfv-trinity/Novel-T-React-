@@ -27,7 +27,6 @@ export const UserProvider: React.FC<PropsWithChildren<UserProps>> = ({
     setEmail(data["email"]);
     setIsLoggedIn(true);
     localStorage.setItem("user", data_serialized);
-    console.log(localStorage);
   }
 
   // const value = useMemo(
