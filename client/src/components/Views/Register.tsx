@@ -32,14 +32,19 @@ function RegisterPage() {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const newUser = {
-      email: email,
-      username: username,
-      password: password,
-      isLoggedIn: true,
-    };
-    const checkForEmail = { email };
-    if (password == passwordConfirmation) {
+    if (password == passwordConfirmation){
+
+      const newUser = {
+        email: email,
+        username: username,
+        password: password,
+        isLoggedIn: true,
+      };
+      
+      const checkForEmail = { email };
+      const loginEmail = email;
+      const login = { loginEmail };
+
       fetch(`${process.env.REACT_APP_URL}users/register`, {
         method: "POST",
         headers: {
@@ -57,8 +62,6 @@ function RegisterPage() {
               },
               body: JSON.stringify(newUser),
             });
-            const loginEmail = email;
-            const login = { loginEmail };
             fetch(`${process.env.REACT_APP_URL}users/login`, {
               method: "POST",
               headers: {
@@ -92,6 +95,7 @@ function RegisterPage() {
       );
     }
   };
+      
 
   return (
     <React.Fragment>
