@@ -21,6 +21,7 @@ export const UserProvider: React.FC<PropsWithChildren<UserProps>> = ({
 
   function LoginUser(data: any) {
     let data_serialized = JSON.stringify(data);
+    console.log("this is the data for registered login: ", data);
     setId(data["id"]);
     setUsername(data["username"]);
     setPassword(data["password"]);
