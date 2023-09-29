@@ -44,8 +44,18 @@ export function AnonAccountMenu() {
           >
             Contact
           </Typography>
+          
           <Typography component={Link} to="/" sx={{ minWidth: 100 }}>
             Dashboard
+          </Typography>
+
+          <Typography
+            className="navbarLink"
+            component={Link}
+            to="/games"
+            sx={{ minWidth: 100 }}
+          >
+            Games
           </Typography>
         </div>
         <div>
