@@ -55,6 +55,14 @@ export function AccountMenu() {
           >
             Dashboard
           </Typography>
+          <Typography
+            className="navbarLink"
+            component={Link}
+            to="/games"
+            sx={{ minWidth: 100 }}
+          >
+            Games
+          </Typography>
           {/* <Typography
             className="navbarLink"
             component={Link}
