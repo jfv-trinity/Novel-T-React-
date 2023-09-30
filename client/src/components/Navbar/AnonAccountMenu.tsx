@@ -38,26 +38,32 @@ export function AnonAccountMenu() {
         }}
       >
         <div>
-          <Typography
+
+        <Typography
             className="navbarLink"
             component={Link}
             to="/Contact"
-            sx={{ minWidth: 100 }}>
+            sx={{ minWidth: 100 }}
+          >
             Contact
-          </Typography>
-          
-          <Typography 
-            component={Link} 
-            to="/" 
-            sx={{ minWidth: 100 }}>
-            Dashboard
           </Typography>
 
           <Typography
+            className="navbarLink"
+            component={Link}
+            to="/"
+            sx={{ minWidth: 100 }}
+          >
+            Library
+          </Typography>
+
+          <Typography
+            className="navbarLink"
             component={Link}
             to="/games"
-            sx={{ minWidth: 100, float: "right" }}>
-            Games
+            sx={{ minWidth: 100, float: "right" }}
+          >
+            Game Corner
           </Typography>
 
         </div>
@@ -111,10 +117,7 @@ export function AnonAccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem component={Link} to="/games">
-          <Gamepad/> Games
-        </MenuItem>
-        <Divider/>
+       
         <MenuItem component={Link} to="/login">
           <Login /> Login
         </MenuItem>
@@ -122,6 +125,11 @@ export function AnonAccountMenu() {
         <MenuItem component={Link} to="/register">
           <PersonAdd /> Create Account
         </MenuItem>
+        <Divider/>
+        <MenuItem component={Link} to="/games">
+          <Gamepad/> Game Corner
+        </MenuItem>
+      
       
       </Menu>
     </React.Fragment>

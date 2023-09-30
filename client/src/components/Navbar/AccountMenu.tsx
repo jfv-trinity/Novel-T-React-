@@ -40,6 +40,7 @@ export function AccountMenu() {
         }}
       >
         <div>
+
           <Typography
             className="navbarLink"
             component={Link}
@@ -48,31 +49,26 @@ export function AccountMenu() {
           >
             Contact
           </Typography>
+
           <Typography
             className="navbarLink"
             component={Link}
             to="/"
             sx={{ minWidth: 100 }}
           >
-            Dashboard
+            Library
           </Typography>
+          
           <Typography
             className="navbarLink"
             component={Link}
             to="/games"
             sx={{ minWidth: 100, float: "right" }}
           >
-            Games
+            Game Corner
           </Typography>
-          {/* <Typography
-            className="navbarLink"
-            component={Link}
-            to="/Profile"
-            sx={{ minWidth: 100 }}
-          >
-            Profile
-          </Typography> */}
         </div>
+
         <div>
           <Tooltip title="Account settings">
             <IconButton
@@ -127,7 +123,7 @@ export function AccountMenu() {
       >
          
          <MenuItem component={Link} to="/games">
-          <Gamepad/> Games
+          <Gamepad/> Game Corner
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/Profile">
