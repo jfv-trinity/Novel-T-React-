@@ -60,7 +60,7 @@ export function AccountMenu() {
             className="navbarLink"
             component={Link}
             to="/games"
-            sx={{ minWidth: 100 }}
+            sx={{ minWidth: 100, float: "right" }}
           >
             Games
           </Typography>

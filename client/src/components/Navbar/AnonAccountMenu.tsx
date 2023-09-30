@@ -56,7 +56,7 @@ export function AnonAccountMenu() {
           <Typography
             component={Link}
             to="/games"
-            sx={{ minWidth: 100 }}>
+            sx={{ minWidth: 100, float: "right" }}>
             Games
           </Typography>
 
