@@ -14,6 +14,7 @@ import Logout from "@mui/icons-material/Logout";
 import Login from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import "./AnonAccountMenu.scss";
+import TicTacToe from "../../TicTacToe/TicTacToe";
 
 export function AnonAccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,23 +41,24 @@ export function AnonAccountMenu() {
             className="navbarLink"
             component={Link}
             to="/Contact"
-            sx={{ minWidth: 100 }}
-          >
+            sx={{ minWidth: 100 }}>
             Contact
           </Typography>
           
-          <Typography component={Link} to="/" sx={{ minWidth: 100 }}>
+          <Typography 
+            component={Link} 
+            to="/" 
+            sx={{ minWidth: 100 }}>
             Dashboard
           </Typography>
 
           <Typography
-            className="navbarLink"
             component={Link}
             to="/games"
-            sx={{ minWidth: 100 }}
-          >
+            sx={{ minWidth: 100 }}>
             Games
           </Typography>
+
         </div>
         <div>
           <Tooltip title="Account settings">
@@ -114,6 +116,9 @@ export function AnonAccountMenu() {
         <Divider />
         <MenuItem component={Link} to="/register">
           <PersonAdd /> Create Account
+        </MenuItem>
+        <MenuItem component={Link} to="/games">
+          <TicTacToe/> Games
         </MenuItem>
       </Menu>
     </React.Fragment>
