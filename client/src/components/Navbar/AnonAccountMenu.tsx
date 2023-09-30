@@ -110,6 +110,10 @@ export function AnonAccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+        <MenuItem component={Link} to="/games">
+          <TicTacToe/> Games
+        </MenuItem>
+        <Divider/>
         <MenuItem component={Link} to="/login">
           <Login /> Login
         </MenuItem>
@@ -117,9 +121,7 @@ export function AnonAccountMenu() {
         <MenuItem component={Link} to="/register">
           <PersonAdd /> Create Account
         </MenuItem>
-        <MenuItem component={Link} to="/games">
-          <TicTacToe/> Games
-        </MenuItem>
+      
       </Menu>
     </React.Fragment>
   );

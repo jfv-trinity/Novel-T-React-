@@ -16,6 +16,7 @@ import { UserContext } from "../../static/UserContext";
 import "./AccountMenu.scss";
 import { Margin } from "@mui/icons-material";
 import UserProps from "../../common/User";
+import TicTacToe from "../../TicTacToe/TicTacToe";
 
 export function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -124,6 +125,11 @@ export function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+         
+         <MenuItem component={Link} to="/games">
+          <TicTacToe/> Games
+        </MenuItem>
+        <Divider />
         <MenuItem component={Link} to="/Profile">
           <Avatar /> Profile
         </MenuItem>
