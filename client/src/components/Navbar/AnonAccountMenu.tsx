@@ -15,6 +15,7 @@ import Login from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import "./AnonAccountMenu.scss";
 import TicTacToe from "../../TicTacToe/TicTacToe";
+import { Gamepad } from "@mui/icons-material";
 
 export function AnonAccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -111,7 +112,7 @@ export function AnonAccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem component={Link} to="/games">
-          <TicTacToe/> Games
+          <Gamepad/> Games
         </MenuItem>
         <Divider/>
         <MenuItem component={Link} to="/login">

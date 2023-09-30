@@ -14,7 +14,7 @@ import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../static/UserContext";
 import "./AccountMenu.scss";
-import { Margin } from "@mui/icons-material";
+import { Gamepad, Margin } from "@mui/icons-material";
 import UserProps from "../../common/User";
 import TicTacToe from "../../TicTacToe/TicTacToe";
 
@@ -127,7 +127,7 @@ export function AccountMenu() {
       >
          
          <MenuItem component={Link} to="/games">
-          <TicTacToe/> Games
+          <Gamepad/> Games
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/Profile">
