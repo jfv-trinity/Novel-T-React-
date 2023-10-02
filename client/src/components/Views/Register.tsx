@@ -23,51 +23,43 @@ function RegisterPage() {
     MyNotification,
   } = React.useContext(NotificationContext)!;
   
-  let newUser: UserProps;
+  // let newUser: UserProps;
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState<UserProps>({isLoggedIn: true});
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (password == passwordConfirmation){
-
-      const newUser = {
-        email: email,
-        username: username,
-        password: password,
-        isLoggedIn: true,
-      };
+    if (user.password == passwordConfirmation){
       
-      const checkForEmail = { email };
-      const loginEmail = email;
-      const login = { loginEmail };
-
+      //check if email exists already
       fetch(`${process.env.REACT_APP_URL}users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(checkForEmail),
+        body: JSON.stringify({"email": user.email}),
       })
         .then((response) => response.json())
         .then((data) => {
+
+          //create new user if no existing email
           if (data == null) {
             fetch(`${process.env.REACT_APP_URL}users`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(newUser),
+              body: JSON.stringify(user),
             });
+
+            //login user after being created
             fetch(`${process.env.REACT_APP_URL}users/login`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(login),
+              body: JSON.stringify({"email": user.email}),
             })
               .then((response) => response.json())
               .then((data) => {
@@ -95,7 +87,6 @@ function RegisterPage() {
       );
     }
   };
-      
 
   return (
     <React.Fragment>
@@ -116,7 +107,7 @@ function RegisterPage() {
                 className="form-control"
                 name="email"
                 placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setUser({...user, email: e.target.value})}
               />
             </label>
             <br />
@@ -128,7 +119,7 @@ function RegisterPage() {
                 id="username"
                 name="username"
                 placeholder="Enter Username"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUser({...user, username: e.target.value})}
               />
             </label>
             <br />
@@ -140,7 +131,7 @@ function RegisterPage() {
                 id="password1"
                 name="password1"
                 placeholder="Enter Password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setUser({...user, password: e.target.value})}
               />
             </label>
             <br />
