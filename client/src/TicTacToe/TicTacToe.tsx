@@ -27,7 +27,7 @@ function TicTacToe() {
   const startNewGame = () => {
     setGameState(GAME_STATES.notStarted);
     setGrid(emptyGrid);
-    setModalOpen(false); // Close the modal when the new game starts
+    setModalOpen(false);
   };
 
   //Move functions
@@ -55,7 +55,7 @@ function TicTacToe() {
           index = getRandomInt(0, 8);
         } while (!emptyIndices.includes(index));
         break;
-      // Medium level is approx. half of the moves are Minimax and the other half random
+      // Medium level moves are Minimax and random
       case GAME_MODES.medium:
         const smartMove = !board.isEmpty(grid) && Math.random() < 0.5;
         if (smartMove) {
