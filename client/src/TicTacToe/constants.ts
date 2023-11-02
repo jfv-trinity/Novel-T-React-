@@ -18,3 +18,8 @@ export const GAME_MODES:Record<string, string> = {
     medium: "medium",
     difficult: "difficult",
 };
+
+export const GAME_SESSION:Record<string, string> = {
+    singleplayer: "singleplayer",
+    multiplayer: "multiplayer",
+};
