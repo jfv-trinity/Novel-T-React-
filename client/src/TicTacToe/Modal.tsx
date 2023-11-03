@@ -14,8 +14,10 @@ interface Props {
   close: () => void;
   startNewGame: () => void;
   winner: null | string;
+  exit: () => void;
 }
-export const ResultModal = ({ isOpen, close, startNewGame, winner }: Props) => {
+
+export const ResultModal = ({ isOpen, exit, close, startNewGame, winner }: Props) => {
   return (
     <StyledModal
       isOpen={isOpen}
@@ -28,7 +30,7 @@ export const ResultModal = ({ isOpen, close, startNewGame, winner }: Props) => {
         <ModalContent>{winner}</ModalContent>
 
         <ModalFooter>
-          <Button onClick={close}>Close</Button>
+          <Button onClick={exit}>Close</Button>
           <Button onClick={startNewGame}>Start over</Button>
         </ModalFooter>
       </ModalWrapper>
