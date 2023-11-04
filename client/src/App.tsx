@@ -1,7 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { ReactComponent as Logo } from "./logo.svg";
+import { useState, ChangeEvent, FormEvent, useRef } from "react";
 import { getData } from "./utils/data-utils";
-import FormInput from "./components/form-input/form-input";
 import React, { useContext, useEffect } from "react";
 import "./App.scss";
 import { Button } from "./components/Buttons/Button";
@@ -27,9 +25,9 @@ import Contact from "./components/Views/Contact";
 import Info from "./components/Views/Info";
 import TicTacToe from "./TicTacToe/TicTacToe";
 import styled from "styled-components";
-// import "papercss/dist/paper.min.css";
 
 function App() {
+
   const user = React.useContext(UserContext)!;
   const { LoginUser } = React.useContext(UserContext)!;
   useEffect(() => {
@@ -94,12 +92,5 @@ function App() {
     // </div>
   );
 }
-
-// const TicTacToe = styled.main`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-// `;
 
 export default App;
