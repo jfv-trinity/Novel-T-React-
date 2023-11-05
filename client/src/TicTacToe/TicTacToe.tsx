@@ -22,7 +22,8 @@ function TicTacToe() {
 
 useEffect(() => {
   if(socket == undefined && !socket){
-    const newSocket:Socket<DefaultEventsMap, DefaultEventsMap> = io('http://localhost:8000')
+    const newSocket:Socket<DefaultEventsMap, DefaultEventsMap> = io(`${process.env.REACT_APP_URL}`)
+    // const newSocket:Socket<DefaultEventsMap, DefaultEventsMap> = io('http://localhost:8000')
     setSocket(newSocket)
   }
 }, [])
