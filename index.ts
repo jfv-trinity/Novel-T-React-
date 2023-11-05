@@ -53,17 +53,6 @@ AppDataSource.initialize().then(async () => {
   app.use(handleError);
 
   //  PORTS & SOCKETS
-  // const httpServer = http.createServer(app);
-
-  //   const io = require("socket.io")(httpServer, {
-  //   cors: {
-  //     origin: "http://localhost:3000",
-  //     methods: ["GET", "POST"]
-  //   }
-  // });
-
-    // const socketPort = process.env.PORT || 8000;
-
   const server = require('http').createServer(app)
   
   // const io = require("socket.io")(server, {
@@ -215,13 +204,8 @@ AppDataSource.initialize().then(async () => {
       })
     }
 
-  // httpServer.listen(socketPort,()=>{
-  //   console.log(`socket connected to ${socketPort}`)
-  // });
-
   server.listen(port, () => {
     console.log(`Express server has started on port ${port}.`)
-    console.log("this should have a port number: ", io);
   });
   
 }).catch((error: any) => console.log(error))
