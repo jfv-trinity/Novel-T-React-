@@ -1,38 +1,142 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { DIMENSIONS, PLAYER_X, PLAYER_O, SQUARE_DIMS, GAME_STATES, DRAW, GAME_MODES } from "./constants";
+import { DIMENSIONS, PLAYER_X, PLAYER_O, SQUARE_DIMS, GAME_STATES, DRAW, GAME_MODES, GAME_TYPE } from "./constants";
 import { getRandomInt, switchPlayer } from "./utils";
 import Board from "./board";
 import { minimax } from './minimax';
 import { ResultModal } from "./Modal";
 import { border } from "./styles";
- 
+import tempImage from "../static/images/icon.png"
+import { UserContext } from "../static/UserContext";
+import {Socket, io} from "socket.io-client";
+import { DefaultEventsMap } from "@socket.io/component-emitter";
+import PlayerProps from "../common/Player";
+import { User } from "../common/TicTacToe";
+
 const emptyGrid = new Array(DIMENSIONS ** 2).fill(null);
 const board = new Board();
- 
+
 function TicTacToe() {
+
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap>>();
+
+useEffect(() => {
+  if(socket == undefined && !socket){
+    const newSocket:Socket<DefaultEventsMap, DefaultEventsMap> = io('http://localhost:8000')
+    setSocket(newSocket)
+  }
+}, [])
+
+socket?.on("rematch", ()=> {
+  multiplayerSetup();
+})
+
+socket?.on("find", ()=> {
+  multiplayerSetup();
+})
+
+socket?.on("grid", (e)=> {
+  console.log("this is the returned grid info: ", e.grid)
+  let passedData = e.grid
+  setGrid(passedData);
+  });
+
+  let user = React.useContext(UserContext)!;
+
   const [modalOpen, setModalOpen] = useState(false);
-  
+  const [showMenu, setShowMenu] = useState(true);  
   const [grid, setGrid] = useState(emptyGrid);
+  const [gameState, setGameState] = useState(GAME_STATES.notStarted);
+
+  //multiplayer values
   const [winner, setWinner] = useState<null | string>(null);
+  const [client, setClient] = useState<PlayerProps>();
+
+
+  //single player values
+  const [mode, setMode] = useState(GAME_MODES.medium);
+  const [nextMove, setNextMove] = useState<null|number>(null);
+  const [gameType, setGameType] = useState(GAME_TYPE.singleplayer);
   const [players, setPlayers] = useState<Record<string, number | null>>({
     human: null,
     ai: null,
   });
-  const [mode, setMode] = useState(GAME_MODES.medium);
-  const [gameState, setGameState] = useState(GAME_STATES.notStarted);
-  const [nextMove, setNextMove] = useState<null|number>(null);
+  
+  const close = () => {
+    setGameState(GAME_STATES.notStarted);
+    setGrid(emptyGrid);
+    setModalOpen(false);
+    socket?.emit("exit game")
+  };
 
-  //functions
   const startNewGame = () => {
+    setGameState(GAME_STATES.notStarted);
+    setGrid(emptyGrid);
+    setModalOpen(false);
+    socket?.emit("rematch")
+  };
+
+  const closeLocalGame = () => {
     setGameState(GAME_STATES.notStarted);
     setGrid(emptyGrid);
     setModalOpen(false);
   };
 
-  //Move functions
-  const move = useCallback(
+  const startNewLocalGame = () => {
+    setGrid(emptyGrid);
+    setModalOpen(false);
+    setGameState(GAME_STATES.inProgress);
+    setNextMove(PLAYER_X);
+  };
+
+  useEffect(() => {
+    if(user.username !== null && user.username !== undefined){
+      setClient({...client, name:user.username! });
+    }
+    else
+    {
+      setClient({...client, name: `Anon${getRandomInt(500,3000).toString()}`});
+    }
+  }, []);
+
+  // const move = useCallback(
+  //   (index: number, player: number | null) => {
+  //     console.log(player)
+  //     if (player && gameState === GAME_STATES.inProgress) {
+  //       setGrid((grid) => {
+  //         const gridCopy = grid.concat();
+  //         gridCopy[index] = player;
+  //         return gridCopy;
+  //       });
+  //     }
+  //   },
+  //   [gameState]
+  // );
+
+  //SINGLE PLAYER FUNCTIONS
+  if(gameType === GAME_TYPE.singleplayer){}
+  const choosePlayer = (option: number) => {
+    setGameType(GAME_TYPE.singleplayer);
+    setPlayers({ human: option, ai: switchPlayer(option) });
+    setGameState(GAME_STATES.inProgress);
+    setNextMove(PLAYER_X);
+   
+  };
+
+  const changeMode = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setMode(e.target.value);
+  };
+
+  const humanMove = (index: number) => {
+    if (!grid[index] && nextMove === players.human) {
+      localMove(index, players.human);
+      setNextMove(players.ai);
+    }
+  };
+
+     const localMove = useCallback(
     (index: number, player: number | null) => {
+      console.log(player)
       if (player && gameState === GAME_STATES.inProgress) {
         setGrid((grid) => {
           const gridCopy = grid.concat();
@@ -45,8 +149,8 @@ function TicTacToe() {
   );
 
   const aiMove = useCallback(() => {
-    // Important to pass a copy of the grid here
-    const board = new Board(grid.concat());
+    if(gameType === GAME_TYPE.singleplayer){
+      const board = new Board(grid.concat());
     const emptyIndices = board.getEmptySquares(grid);
     let index;
     switch (mode) {
@@ -75,36 +179,72 @@ function TicTacToe() {
 
     if (typeof index === "number" && !grid[index]) {
       if (players.ai !== null) {
-        move(index, players.ai);
+        localMove(index, players.ai);
       }
       setNextMove(players.human);
     }
-  }, [move, grid, players, mode]);
+    }
+    
+  }, [localMove, grid, players, mode]);
 
-  const changeMode = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setMode(e.target.value);
+  useEffect(() => {
+    if(gameType == GAME_TYPE.singleplayer){
+      let timeout: NodeJS.Timeout;
+      if (
+        nextMove !== null &&
+        nextMove === players.ai &&
+        gameState !== GAME_STATES.over
+      ) {
+        // Delay AI moves to make them seem more natural
+        timeout = setTimeout(() => {
+          aiMove();
+        }, 500);
+      }
+      return () => timeout && clearTimeout(timeout);
+    }
+  }, [nextMove, aiMove, players.ai, gameState]);
+
+
+  // MULTIPLAYER FUNCTIONS
+  const multiplayerSetup = () => {
+      setGameState(GAME_STATES.inProgress);
   };
 
-  const humanMove = (index: number) => {
-    if (!grid[index] && nextMove === players.human) {
-      move(index, players.human);
-      setNextMove(players.ai);
+  const move = useCallback(
+    (index: number) => {
+      if (gameState === GAME_STATES.inProgress) {
+        let moveRequest = {cell: index}
+        socket?.emit("fillBoard", moveRequest);
+      }
+    },
+    [gameState]
+  );
+
+  const playerMove = (index: number) => {
+    if (!grid[index])
+      {
+        move(index);
+      }
+  };
+
+  
+  const search = () => {
+    if(socket && client !== undefined){
+      setGameType(GAME_TYPE.multiplayer)
+      let userObj:User = {id:socket.id, name: client.name!}
+      console.log(userObj)
+      socket.emit("find",{Data: userObj});
     }
   };
-
-  const choosePlayer = (option: number) => {
-    setPlayers({ human: option, ai: switchPlayer(option) });
-    setGameState(GAME_STATES.inProgress);
-    // Set the Player X to make the first move
-    setNextMove(PLAYER_X);
-  };
+ 
 
   // listeners
   useEffect(() => {
     const boardWinner = board.getWinner(grid);
- 
+    
     const declareWinner = (winner: number) => {
       let winnerStr;
+
       switch (winner) {
         case PLAYER_X:
           winnerStr = "Player X wins!";
@@ -116,6 +256,7 @@ function TicTacToe() {
         default:
           winnerStr = "It's a draw";
       }
+
       setGameState(GAME_STATES.over);
       setWinner(winnerStr);
       // Slight delay for the modal so there is some time to see the last move
@@ -127,74 +268,110 @@ function TicTacToe() {
     }
   }, [gameState, grid, nextMove]);
    
-   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    if (
-      nextMove !== null &&
-      nextMove === players.ai &&
-      gameState !== GAME_STATES.over
-    ) {
-      // Delay AI moves to make them seem more natural
-      timeout = setTimeout(() => {
-        aiMove();
-      }, 500);
-    }
-    return () => timeout && clearTimeout(timeout);
-  }, [nextMove, aiMove, players.ai, gameState]);
+
 
   return gameState === GAME_STATES.notStarted ? (
     <div>
-      <Inner>
-        <p>Select difficulty</p>
-        <select onChange={changeMode} value={mode}>
-          {Object.keys(GAME_MODES).map(key => {
-            const gameMode = GAME_MODES[key];
-            return (
-              <option key={gameMode} value={gameMode}>
-                {key}
-              </option>
-            );
-          })}
-        </select>
-      </Inner>
-      <Inner>
-        <p>Choose your player</p>
-        <ButtonRow>
-          <button onClick={() => choosePlayer(PLAYER_X)}>X</button>
-          <p>or</p>
-          <button onClick={() => choosePlayer(PLAYER_O)}>O</button>
-        </ButtonRow>
-      </Inner>
+      <h1> Tic-Tac-Toe </h1>
+      <TacBorder>
+        <Inner>
+        
+          <p>Single Player</p>
+          <select onChange={changeMode} value={mode}>
+            {Object.keys(GAME_MODES).map(key => {
+              const gameMode = GAME_MODES[key];
+              return (
+                <option key={gameMode} value={gameMode}>
+                  {key}
+                </option>
+              );
+            })}
+          </select>
+        </Inner>
+        <Inner>
+          <p>Choose your player</p>
+          <ButtonRow>
+            <button onClick={() => choosePlayer(PLAYER_X)}>X</button>
+            <p>or</p>
+            <button onClick={() => choosePlayer(PLAYER_O)}>O</button>
+          </ButtonRow>
+        </Inner>
+      
+        <Border>
+          <Inner>
+          <hr/>
+            <p>Multiplayer</p>
+            <button id="find" onClick={() => search()}> Search for players </button>
+          </Inner>
+        </Border>
+      </TacBorder>
     </div>
   ) : (
     <Container dims={DIMENSIONS}>
-    {grid.map((value, index) => {
+    {grid?.map((value, index) => {
       const isActive = value !== null;
  
-      return (
+      return gameType === GAME_TYPE.multiplayer ? (
         <Square
           data-testid={`square_${index}`}
           key={index}
-          onClick={() => humanMove(index)}
+          onClick={() => playerMove(index)}
         >
           {isActive && <Marker>{value === PLAYER_X ? "X" : "O"}</Marker>}
         </Square>
-      );
+      ) : 
+        <Square
+        data-testid={`square_${index}`}
+        key={index}
+        onClick={() => humanMove(index)}
+      >
+        {isActive && <Marker>{value === PLAYER_X ? "X" : "O"}</Marker>}
+      </Square>
+      ;
     })}
+
+    {
+      gameType === GAME_TYPE.multiplayer ? 
+      <ResultModal
+          isOpen={modalOpen}
+          winner={winner}
+          close={() => setModalOpen(false)}
+          exit={close}
+          startNewGame={startNewGame}
+        /> :  
+
+      <ResultModal
+        isOpen={modalOpen}
+        winner={winner}
+        close={() => setModalOpen(false)}
+        exit={closeLocalGame}
+        startNewGame={startNewLocalGame}
+      />
+    }
+
     <Strikethrough
       styles={
         gameState === GAME_STATES.over ? board.getStrikethroughStyles() : ""
       }
     />
-    <ResultModal
-      isOpen={modalOpen}
-      winner={winner}
-      close={() => setModalOpen(false)}
-      startNewGame={startNewGame}
-    />
+
   </Container>
   );
 };
+
+const Border = styled.div`
+border: 1px black;
+border-style: solid;
+`;
+
+const TacBorder = styled.div`
+border: 5px black;
+border-style: solid;
+margin-left: 50%;
+transform: translateX(-50%);
+max-width: 18%;
+min-width: %;
+`;
  
 const Container = styled.div<{ dims: number }>`
   display: inline-flex;
